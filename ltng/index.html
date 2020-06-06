@@ -13,17 +13,16 @@
     <script src="https://dofe.force.com/lightning/lightning.out.js"></script>
     <script>
         $Lightning.use("c:EventsFormApp", function () {
-            $Lightning.createComponent("c:EventsForm", {
-
-            },
+            $Lightning.createComponent(
+                "c:EventsForm", 
+                {eventId : 'a023X00001qmvu2QAA'},
                 "helloWorld",
                 function (cmp) {
-                    console.log("LWC helloWorld was created");
-                    // do some stuff 
+                    // callback when component is created and active on the page
                 }
             );
         },
-            'https://dofe.force.com'
+            'https://dofe.force.com' // Community endpoint
         );
     </script>
 </body>
