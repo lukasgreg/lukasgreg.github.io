@@ -6,11 +6,30 @@
     <title>Four Paws - Unsubscribe</title>
     <!--<link type="text/css" rel="stylesheet" href="slds/styles/salesforce-lightning-design-system.css">
     <link type="text/css" rel="stylesheet" href="_slds/styles/salesforce-lightning-design-system.css">-->
+    <!--reCaptcha v3-->
+    <script>
+        document.addEventListener('addCaptcha', (event) => {
+            debugger;
+            grecaptcha.render(event.detail.value, {
+                'sitekey' : '6Ld1mZYdAAAAAMc6YtB157oOmVp5_bAYPK1TEbos'
+            });
+        });
+
+
+        document.addEventListener('reCaptchaEvent', (event) => {
+            debugger;
+            switch(event.detail.value){
+                case 'getResponse':
+                    event.detail.callback(grecaptcha.getResponse());
+            }
+        });
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js?render=explicit'></script>
 </head>
 
 <body style="margin: unset !important;">
     <div id="subcribePage"></div>
-    <script src="https://four-paws-int-web.force.com/unsubscription/lightning/lightning.out.js"></script>
+    <script src="https://adyen-four-paws-int-web.cs102.force.com/unsubscription/lightning/lightning.out.js"></script>
     <script>
         $Lightning.use("c:SubscriptionApp", function () {
             $Lightning.createComponent(
@@ -22,7 +41,7 @@
                 }
             );
         },
-            'https://four-paws-int-web.force.com/unsubscription' // Community endpoint
+            'https://adyen-four-paws-int-web.cs102.force.com/unsubscription' // Community endpoint
         );
     </script>
 </body>
