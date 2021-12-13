@@ -8,12 +8,16 @@
     <link type="text/css" rel="stylesheet" href="_slds/styles/salesforce-lightning-design-system.css">-->
     <!--reCaptcha v3-->
     <script>
+        const expiredCallback;
+        const dataCallback;
         document.addEventListener('addCaptcha', (event) => {
-            debugger;
+            expiredCallback = event.detail.expiredCallback;
+            dataCallback = event.detail.dataCallback;
+
             grecaptcha.render(event.detail.value, {
                 'sitekey' : '6Ld1mZYdAAAAAMc6YtB157oOmVp5_bAYPK1TEbos',
-                'expired-callback': event.detail.expiredCallback,
-                'callback' : event.detail.dataCallback
+                'expired-callback': expiredCallback,
+                'callback' : dataCallback
             });
         });
 
@@ -22,7 +26,7 @@
             debugger;
             switch(event.detail.value){
                 case 'getResponse':
-                    window.recaptchaStatus = event.detail.callback(grecaptcha.getResponse());
+                    event.detail.callback(grecaptcha.getResponse());
             }
         });
     </script>
