@@ -22,7 +22,7 @@
             debugger;
             switch(event.detail.value){
                 case 'getResponse':
-                    event.detail.callback(grecaptcha.getResponse());
+                    window.recaptchaStatus = event.detail.callback(grecaptcha.getResponse());
             }
         });
     </script>
