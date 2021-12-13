@@ -15,11 +15,6 @@
                 'callback' : event.detail.dataCallback
             });
         });
-        
-        let callback = function(token){
-            document.dispatchEvent(new CustomEvent('reCaptcha',{ detail : {value : token}}));
-        }
-
     </script>
     <script src='https://www.google.com/recaptcha/api.js?render=explicit'></script>
 </head>
