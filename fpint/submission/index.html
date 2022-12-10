@@ -1,1 +1,41 @@
-test
+<!doctype html>
+<html lang="en">
+
+<head> 
+    <meta charset="utf-8">
+    <title>Four Paws - Unsubscribe</title>
+    <!--<link type="text/css" rel="stylesheet" href="slds/styles/salesforce-lightning-design-system.css">
+    <link type="text/css" rel="stylesheet" href="_slds/styles/salesforce-lightning-design-system.css">-->
+    <!--reCaptcha v2-->
+    <script>
+        document.addEventListener('addCaptcha', (event) => {
+            grecaptcha.render(event.detail.value, {
+                'sitekey' : '6Ld1mZYdAAAAAMc6YtB157oOmVp5_bAYPK1TEbos',
+                'expired-callback': event.detail.expiredCallback,
+                'callback' : event.detail.dataCallback
+            });
+        });
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js?render=explicit'></script>
+</head>
+
+<body style="margin: unset !important;">
+    <div id="subcribePage"></div>
+    <script src="	https://four-paws--dev2.sandbox.my.site.com/unsubscription/lightning/lightning.out.js"></script>
+    <script>
+        $Lightning.use("c:SubscriptionApp", function () {
+            $Lightning.createComponent(
+                "c:SubmissionForm", 
+                {},
+                "submissionForm",
+                function (cmp) {
+                    // callback when component is created and active on the page
+                }
+            );
+        },
+            '	https://four-paws--dev2.sandbox.my.site.com/unsubscription' // Community endpoint
+        );
+    </script>
+</body>
+
+</html>
