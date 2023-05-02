@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+ 
+
+<head> 
+<meta charset="utf-8">
+<title>Four Paws - Submission Form</title>
+<!--<link type="text/css" rel="stylesheet" href="slds/styles/salesforce-lightning-design-system.css">
+<link type="text/css" rel="stylesheet" href="_slds/styles/salesforce-lightning-design-system.css">-->
+</head>
+
+ 
+
+<body style="margin: unset !important;">
+<div id="submissionForm"></div>
+<script src="https://four-paws.my.site.com/unsubscription/lightning/lightning.out.js"></script>
+<script>
+        $Lightning.use("c:SubscriptionApp", function () {
+            $Lightning.createComponent(
+                "c:SubmissionForm", 
+                {},
+                "submissionForm",
+                function (cmp) {
+                    // callback when component is created and active on the page
+                }
+            );
+        },
+            'https://four-paws.my.site.com/unsubscription' // Community endpoint
+        );
+</script>
+</body>
+
+ 
+
+</html>
