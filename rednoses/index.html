@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+  <head> 
+      <meta charset="utf-8">
+      <title>Red Noses HR - Newsletter</title>
+  </head>
+  
+  <body style="margin: unset !important;">
+      <div id="unsubcribePage"></div>
+      <script src="https://d58000000ihe0eao.my.site.com/lightning/lightning.out.jss"></script>
+      <script>
+          $Lightning.use("c:NewsletterFlowWrapperApp", function () {
+              $Lightning.createComponent(
+                  "c:NewsletterFlowWrapper", 
+                  {},
+                  "newsletterPage",
+                  function (cmp) {
+                      // callback when component is created and active on the page
+                  }
+              );
+          },
+              'https://d58000000ihe0eao.my.site.com' // Community endpoint
+          );
+      </script>
+  </body>
+
+</html>
