@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B Proud Company s.r.o. | Stavební Práce Praha</title>
+  <meta name="description" content="B Proud Company s.r.o. – profesionální stavební práce, rekonstrukce, izolace, ploty a doprava v Praze. IČO: 06897797.">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #0d0d0d;
+      --bg-2:        #141414;
+      --bg-3:        #1c1c1c;
+      --card:        #1f1f1f;
+      --accent:      #e8860c;
+      --accent-dim:  rgba(232,134,12,0.12);
+      --accent-edge: rgba(232,134,12,0.35);
+      --text:        #efefef;
+      --text-2:      #9a9a9a;
+      --text-3:      #4a4a4a;
+      --sep:         rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 2.5rem;
+      transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
+    }
+    #nav.solid {
+      background: rgba(13,13,13,0.96);
+      backdrop-filter: blur(14px);
+      padding: 1rem 2.5rem;
+      box-shadow: 0 1px 0 var(--sep);
+    }
+
+    .logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.55rem; font-weight: 700;
+      letter-spacing: 0.18em; text-decoration: none; color: var(--text);
+    }
+    .logo em { color: var(--accent); font-style: normal; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-2); text-decoration: none;
+      position: relative; transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0;
+      width: 0; height: 1.5px; background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .burger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--text); transition: all 0.3s;
+    }
+    .burger.x span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.x span:nth-child(2) { opacity: 0; }
+    .burger.x span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    #overlay {
+      display: none; position: fixed; inset: 0; z-index: 800;
+      background: rgba(13,13,13,0.97);
+      flex-direction: column; align-items: center; justify-content: center; gap: 3rem;
+    }
+    #overlay.open { display: flex; }
+    #overlay a {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 8vw, 3rem); font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text); text-decoration: none; transition: color 0.2s;
+    }
+    #overlay a:hover { color: var(--accent); }
+
+    /* ─── HERO ────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(232,134,12,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,134,12,0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 75% 80% at 60% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-bar {
+      position: absolute; top: 0; right: 22%;
+      width: 2px; height: 100%;
+      background: linear-gradient(to bottom, transparent 5%, var(--accent) 25%, var(--accent) 75%, transparent 95%);
+      opacity: 0.12;
+    }
+
+    .hero-stripe {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--accent) 0, var(--accent) 10px,
+        transparent 10px, transparent 20px
+      );
+      opacity: 0.45;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+      display: grid; grid-template-columns: 55% 1fr;
+      gap: 3.5rem; align-items: center; width: 100%;
+    }
+
+    .hero-text { padding-top: 5.5rem; padding-bottom: 3rem; }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.85rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem; font-weight: 400; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.6rem;
+    }
+    .eyebrow::before {
+      content: ''; display: block;
+      width: 36px; height: 1px; background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3.2rem, 6.5vw, 6rem);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.01em; text-transform: uppercase;
+      margin-bottom: 1.6rem;
+    }
+    .hero-title .gold { color: var(--accent); display: block; }
+
+    .hero-sub {
+      font-size: 0.975rem; color: var(--text-2);
+      line-height: 1.75; max-width: 420px; margin-bottom: 2.8rem;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: var(--accent); color: #000;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.88rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.95rem 2.2rem;
+      position: relative; overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,0.18);
+      transform: translateX(-110%); transition: transform 0.35s;
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover { box-shadow: 0 0 30px rgba(232,134,12,0.35); }
+    .btn-primary svg { width: 15px; height: 15px; transition: transform 0.3s; }
+    .btn-primary:hover svg { transform: translateX(4px); }
+
+    .hero-photo {
+      aspect-ratio: 4/3;
+      background: var(--bg-2);
+      border: 2px dashed var(--accent-edge);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.1rem;
+      position: relative; overflow: hidden;
+      margin-top: 5.5rem;
+    }
+    .hero-photo::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, var(--accent-dim) 0%, transparent 50%),
+        linear-gradient(315deg, var(--accent-dim) 0%, transparent 50%);
+    }
+
+    .ph-icon { color: var(--accent); opacity: 0.4; position: relative; }
+    .ph-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--text-3);
+      position: relative;
+    }
+
+    /* ─── SECTION SHARED ─────────────────────────── */
+    section { padding: 7rem 0; position: relative; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+
+    .sec-tag {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.85rem;
+    }
+    .sec-tag::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--accent);
+    }
+
+    .sec-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.03em; line-height: 1.05;
+      margin-bottom: 0.9rem;
+    }
+
+    .sec-sub {
+      font-size: 0.95rem; color: var(--text-2);
+      line-height: 1.75; max-width: 540px;
+    }
+
+    /* ─── SERVICES ───────────────────────────────── */
+    #sluzby {
+      background: var(--bg-2);
+      clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+      padding: 10rem 0;
+    }
+
+    .srv-head { margin-bottom: 3.5rem; }
+
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--sep);
+    }
+
+    .srv-card {
+      background: var(--bg-2);
+      padding: 2rem 1.8rem 2.2rem;
+      position: relative; overflow: hidden;
+      transition: background 0.3s, transform 0.35s, box-shadow 0.35s;
+      cursor: default;
+    }
+    .srv-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .srv-card:hover {
+      background: var(--card);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.55);
+      z-index: 2;
+    }
+    .srv-card:hover::after { transform: scaleX(1); }
+
+    .srv-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.22em; color: var(--accent); opacity: 0.65;
+      margin-bottom: 1.4rem;
+    }
+
+    .srv-icon {
+      width: 52px; height: 52px;
+      border: 1px dashed var(--accent-edge);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.4rem; color: var(--accent);
+    }
+    .srv-icon svg { width: 22px; height: 22px; }
+
+    .srv-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--text); margin-bottom: 0.65rem;
+    }
+
+    .srv-desc { font-size: 0.87rem; color: var(--text-2); line-height: 1.65; }
+
+    .srv-ghost {
+      position: absolute; bottom: -12px; right: 2px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 5.5rem; font-weight: 700; line-height: 1;
+      color: rgba(255,255,255,0.018); pointer-events: none;
+      user-select: none;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────── */
+    #onas { background: var(--bg); padding: 8rem 0; }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .pillars {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--sep);
+      margin: 2.5rem 0 2.8rem;
+    }
+    .pillar {
+      background: var(--bg);
+      padding: 1.5rem 1.2rem;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .pillar:hover { border-color: var(--accent); }
+    .pillar-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.92rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .pillar-body { font-size: 0.82rem; color: var(--text-2); line-height: 1.55; }
+
+    .reasons { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+    .reason {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1rem 1.1rem;
+      background: var(--bg-2);
+      border-left: 2.5px solid var(--accent);
+      transition: background 0.25s;
+    }
+    .reason:hover { background: var(--bg-3); }
+    .reason-tick {
+      width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;
+      background: var(--accent); color: #000;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reason-tick svg { width: 11px; height: 11px; }
+    .reason strong {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.92rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--text); margin-bottom: 0.15rem;
+    }
+    .reason span { font-size: 0.85rem; color: var(--text-2); }
+
+    .about-img {
+      position: sticky; top: 110px;
+      aspect-ratio: 3/4;
+      background: var(--bg-2);
+      border: 2px dashed var(--accent-edge);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1rem;
+    }
+
+    /* ─── GALLERY ────────────────────────────────── */
+    #galerie {
+      background: var(--bg-2);
+      clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+      padding: 10rem 0;
+    }
+
+    .gal-head { margin-bottom: 3rem; }
+
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px; background: var(--sep);
+    }
+
+    .gal-item {
+      aspect-ratio: 4/3;
+      background: var(--bg-2);
+      border: 2px dashed var(--accent-edge);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.85rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .gal-item::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.35s;
+    }
+    .gal-item:hover { border-color: var(--accent); }
+    .gal-item:hover::before { opacity: 1; }
+
+    /* ─── CONTACT ────────────────────────────────── */
+    #kontakt { background: var(--bg); padding: 8rem 0; }
+
+    .ct-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .ct-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.5rem;
+      background: var(--bg-2);
+      border: 1px solid var(--sep);
+      transition: border-color 0.3s;
+    }
+    .ct-item:hover { border-color: var(--accent-edge); }
+
+    .ct-ico {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--accent-dim); border: 1px solid var(--accent-edge);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .ct-ico svg { width: 18px; height: 18px; }
+    .ct-lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--text-3);
+      margin-bottom: 0.25rem;
+    }
+    .ct-val { font-size: 0.95rem; color: var(--text); line-height: 1.55; }
+    .ct-val a { color: var(--accent); text-decoration: none; }
+    .ct-val a:hover { text-decoration: underline; }
+
+    .ct-legal {
+      grid-column: 1 / -1;
+      background: var(--bg-2); border: 1px solid var(--sep);
+      padding: 1.3rem 1.5rem;
+      display: flex; gap: 3rem; flex-wrap: wrap; align-items: center;
+    }
+    .ct-legal span { font-size: 0.9rem; color: var(--text-2); }
+    .ct-legal strong { color: var(--text); font-weight: 500; }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--sep);
+      padding: 2.2rem 0;
+    }
+    .ft-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .ft-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem; font-weight: 700; letter-spacing: 0.1em;
+    }
+    .ft-logo em { color: var(--accent); font-style: normal; }
+    .ft-mid { font-size: 0.8rem; color: var(--text-3); text-align: center; }
+    .ft-copy { font-size: 0.78rem; color: var(--text-3); }
+
+    /* ─── FLOAT CALL ─────────────────────────────── */
+    .float-call {
+      position: fixed; bottom: 1.8rem; right: 1.8rem;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent); color: #000;
+      display: none; align-items: center; justify-content: center;
+      text-decoration: none; z-index: 500;
+      box-shadow: 0 4px 20px rgba(232,134,12,0.45);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .float-call:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(232,134,12,0.6);
+    }
+    .float-call svg { width: 22px; height: 22px; }
+
+    /* ─── SCROLL ANIMATIONS ──────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+    .d6 { transition-delay: 0.48s; }
+    .d7 { transition-delay: 0.56s; }
+    .d8 { transition-delay: 0.64s; }
+    .d9 { transition-delay: 0.72s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 1024px) {
+      .srv-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-text { padding-top: 7rem; padding-bottom: 0; }
+      .hero-photo { margin-top: 0; aspect-ratio: 16/9; }
+      .hero-bar { display: none; }
+
+      #sluzby { clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%); padding: 8rem 0; }
+      .srv-grid { grid-template-columns: 1fr; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img { position: relative; top: auto; aspect-ratio: 16/9; }
+      .pillars { grid-template-columns: 1fr; }
+
+      #galerie { clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%); padding: 8rem 0; }
+      .gal-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .ct-grid { grid-template-columns: 1fr; }
+
+      .ft-inner { flex-direction: column; text-align: center; }
+      .ft-copy { text-align: center; }
+
+      .float-call { display: flex; }
+    }
+
+    @media (max-width: 480px) {
+      .gal-grid { grid-template-columns: 1fr; }
+      .pillars { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────────────────────── -->
+<nav id="nav">
+  <a href="#hero" class="logo">B <em>PROUD</em></a>
+  <ul class="nav-links">
+    <li><a href="#sluzby">Služby</a></li>
+    <li><a href="#onas">O nás</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="overlay">
+  <a href="#sluzby"  class="ol">Služby</a>
+  <a href="#onas"    class="ol">O nás</a>
+  <a href="#galerie" class="ol">Galerie</a>
+  <a href="#kontakt" class="ol">Kontakt</a>
+</div>
+
+<!-- ─── HERO ─────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-bar"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="eyebrow">Stavební práce Praha</div>
+      <h1 class="hero-title">
+        B Proud<br>
+        <span class="gold">Company</span><br>
+        s.r.o.
+      </h1>
+      <p class="hero-sub">Profesionální stavební práce, rekonstrukce bytů, izolace a pozemní práce. Každý projekt realizujeme s důrazem na preciznost, spolehlivost a moderní přístupy.</p>
+      <a href="#kontakt" class="btn-primary">
+        Kontaktujte nás
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="hero-photo">
+      <svg class="ph-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      <span class="ph-label">Úvodní fotografie</span>
+    </div>
+  </div>
+  <div class="hero-stripe"></div>
+</section>
+
+<!-- ─── SERVICES ──────────────────────────────────── -->
+<section id="sluzby">
+  <div class="wrap">
+    <div class="srv-head">
+      <div class="sec-tag">Co nabízíme</div>
+      <h2 class="sec-title">Naše služby</h2>
+      <p class="sec-sub">Pokrýváme celou škálu stavebních prací – od rekonstrukcí a izolací až po zemní práce a dopravu materiálu.</p>
+    </div>
+
+    <div class="srv-grid">
+
+      <div class="srv-card reveal d1">
+        <div class="srv-num">01</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <div class="srv-name">Rekonstrukce bytu</div>
+        <p class="srv-desc">Specializujeme se na proměnu bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.</p>
+        <div class="srv-ghost">01</div>
+      </div>
+
+      <div class="srv-card reveal d2">
+        <div class="srv-num">02</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="1"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <line x1="12" y1="12" x2="12" y2="16"/>
+            <line x1="10" y1="14" x2="14" y2="14"/>
+          </svg>
+        </div>
+        <div class="srv-name">Ploty a brány</div>
+        <p class="srv-desc">Stavba plotů včetně plotových polí pro bezpečné a esteticky příjemné okolí vašeho domova nebo pozemku.</p>
+        <div class="srv-ghost">02</div>
+      </div>
+
+      <div class="srv-card reveal d3">
+        <div class="srv-num">03</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+          </svg>
+        </div>
+        <div class="srv-name">Izolace (vzduchotechnika)</div>
+        <p class="srv-desc">Kompletní izolační služby pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu ve vašem prostoru.</p>
+        <div class="srv-ghost">03</div>
+      </div>
+
+      <div class="srv-card reveal d4">
+        <div class="srv-num">04</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <div class="srv-name">Izolace fasády</div>
+        <p class="srv-desc">Kvalitní izolace fasády materiály Isocer, Caparol, Baumit a Weber – optimální tepelná ochrana a estetický vzhled.</p>
+        <div class="srv-ghost">04</div>
+      </div>
+
+      <div class="srv-card reveal d5">
+        <div class="srv-num">05</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="srv-name">Protipožární prostupy</div>
+        <p class="srv-desc">Profesionální zajištění protipožárních prostupů a dodržení všech požárních předpisů ve vašem objektu.</p>
+        <div class="srv-ghost">05</div>
+      </div>
+
+      <div class="srv-card reveal d6">
+        <div class="srv-num">06</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <div class="srv-name">Výměna chladících jednotek</div>
+        <p class="srv-desc">Profesionální výměna chladících jednotek a věží pro optimální fungování chladícího systému.</p>
+        <div class="srv-ghost">06</div>
+      </div>
+
+      <div class="srv-card reveal d7">
+        <div class="srv-num">07</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div class="srv-name">Bourací práce</div>
+        <p class="srv-desc">Precizní a bezpečné bourací práce – efektivní odstranění stavebních prvků dle vašich požadavků a plánů.</p>
+        <div class="srv-ghost">07</div>
+      </div>
+
+      <div class="srv-card reveal d8">
+        <div class="srv-num">08</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20h20M6 20V10l6-6 6 6v10"/>
+            <path d="M10 20v-5h4v5"/>
+          </svg>
+        </div>
+        <div class="srv-name">Výkopové práce</div>
+        <p class="srv-desc">Ruční výkopy pro detailní práce a preciznost, stejně jako bagrování a strojní výkopy pro větší projekty.</p>
+        <div class="srv-ghost">08</div>
+      </div>
+
+      <div class="srv-card reveal d9">
+        <div class="srv-num">09</div>
+        <div class="srv-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <div class="srv-name">Doprava s hydraulickou rukou</div>
+        <p class="srv-desc">Profesionální doprava a manipulace s náklady do 12 tun přímo na vaše staveniště nebo jiný objekt.</p>
+        <div class="srv-ghost">09</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ──────────────────────────────────────── -->
+<section id="onas">
+  <div class="wrap">
+    <div class="about-grid">
+
+      <div>
+        <div class="sec-tag">Naše filozofie</div>
+        <h2 class="sec-title">Proč nás<br>vybrat?</h2>
+        <p class="sec-sub">Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov. Tato filozofie nás provází od vzniku společnosti.</p>
+
+        <div class="pillars">
+          <div class="pillar reveal d1">
+            <div class="pillar-name">Kvalita</div>
+            <div class="pillar-body">Nekompromisní kvalita ve všech pracích – každý detail hraje roli.</div>
+          </div>
+          <div class="pillar reveal d2">
+            <div class="pillar-name">Spolehlivost</div>
+            <div class="pillar-body">Dodržujeme dohodnuté termíny a závazky bez výjimky.</div>
+          </div>
+          <div class="pillar reveal d3">
+            <div class="pillar-name">Inovace</div>
+            <div class="pillar-body">Sledujeme nejnovější trendy a technologie stavebnictví.</div>
+          </div>
+        </div>
+
+        <ul class="reasons">
+          <li class="reason reveal d1">
+            <div class="reason-tick">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Zkušenosti</strong>
+              <span>Tým profesionálů s bohatými zkušenostmi v oboru stavebnictví.</span>
+            </div>
+          </li>
+          <li class="reason reveal d2">
+            <div class="reason-tick">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Flexibilita</strong>
+              <span>Přizpůsobíme se vašim potřebám, termínům i rozsahu projektu.</span>
+            </div>
+          </li>
+          <li class="reason reveal d3">
+            <div class="reason-tick">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Široká škála služeb</strong>
+              <span>Jeden partner pro veškeré vaše stavební potřeby na jednom místě.</span>
+            </div>
+          </li>
+          <li class="reason reveal d4">
+            <div class="reason-tick">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div>
+              <strong>Osobní přístup</strong>
+              <span>Každý zákazník je pro nás jedinečný – individuální péče v každé fázi.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="about-img reveal">
+        <svg class="ph-icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Foto týmu / realizace</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ────────────────────────────────────── -->
+<section id="galerie">
+  <div class="wrap">
+    <div class="gal-head">
+      <div class="sec-tag">Naše realizace</div>
+      <h2 class="sec-title">Galerie</h2>
+      <p class="sec-sub">Ukázky dokončených projektů. Fotografie budou doplněny po dodání podkladů.</p>
+    </div>
+
+    <div class="gal-grid">
+      <div class="gal-item reveal d1">
+        <svg class="ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Přidat fotografii</span>
+      </div>
+      <div class="gal-item reveal d2">
+        <svg class="ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Přidat fotografii</span>
+      </div>
+      <div class="gal-item reveal d3">
+        <svg class="ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Přidat fotografii</span>
+      </div>
+      <div class="gal-item reveal d4">
+        <svg class="ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Přidat fotografii</span>
+      </div>
+      <div class="gal-item reveal d5">
+        <svg class="ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Přidat fotografii</span>
+      </div>
+      <div class="gal-item reveal d6">
+        <svg class="ph-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="ph-label">Přidat fotografii</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ────────────────────────────────────── -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="sec-tag">Spojte se s námi</div>
+    <h2 class="sec-title">Kontakt</h2>
+
+    <div class="ct-grid">
+
+      <div class="ct-item reveal d1">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l1.02-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.66 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ct-lbl">Telefon</div>
+          <div class="ct-val"><a href="tel:+420777052539">+420 777 052 539</a></div>
+        </div>
+      </div>
+
+      <div class="ct-item reveal d2">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ct-lbl">E-mail</div>
+          <div class="ct-val"><a href="mailto:bproud@email.cz">bproud@email.cz</a></div>
+        </div>
+      </div>
+
+      <div class="ct-item reveal d3">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ct-lbl">Adresa</div>
+          <div class="ct-val">Dlouhá 730/35<br>Praha 1 – Staré Město, PSČ 110 00</div>
+        </div>
+      </div>
+
+      <div class="ct-item reveal d4">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ct-lbl">Jednatel</div>
+          <div class="ct-val">Ing. Haetchi Victor Nicolae</div>
+        </div>
+      </div>
+
+      <div class="ct-legal reveal">
+        <span><strong>IČO:</strong> 06897797</span>
+        <span><strong>DIČ:</strong> CZ06897797</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="ft-inner">
+      <div class="ft-logo">B <em>PROUD</em> COMPANY s.r.o.</div>
+      <div class="ft-mid">IČO: 06897797&nbsp;&nbsp;|&nbsp;&nbsp;DIČ: CZ06897797</div>
+      <div class="ft-copy" id="ftcopy"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating call button (mobile) -->
+<a href="tel:+420777052539" class="float-call" aria-label="Zavolat nám">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l1.02-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.66 16.92z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('solid', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const overlay = document.getElementById('overlay');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('x');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+  });
+  overlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      burger.classList.remove('x');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Copyright year
+  document.getElementById('ftcopy').textContent =
+    '© ' + new Date().getFullYear() + ' B Proud Company s.r.o. Všechna práva vyhrazena.';
+</script>
+
+</body>
+</html>
