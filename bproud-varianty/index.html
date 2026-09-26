@@ -6,51 +6,80 @@
   <title>B Proud – varianty webu</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="../bproud/favicon.ico" sizes="any">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #f2f3f4; color: #16191c; font-family: 'Inter', sans-serif; padding: 3rem 1rem 4rem; }
-    .wrap { max-width: 1100px; margin: 0 auto; }
-    h1 { font-size: 2rem; margin-bottom: 0.4rem; }
-    p.lead { color: #5b636b; margin-bottom: 2rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
-    a.card { display: block; background: #fff; border: 1px solid #dde1e4; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
-    a.card:hover { border-color: #16191c; transform: translateY(-2px); }
-    .sw { height: 64px; display: flex; }
-    .sw span { flex: 1; }
-    .body { padding: 1rem 1.1rem 1.2rem; }
-    .body small { font-size: 0.75rem; color: #5b636b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-    .body h2 { font-size: 1.1rem; margin: 0.2rem 0 0.35rem; }
-    .body p { font-size: 0.9rem; color: #5b636b; line-height: 1.5; }
-    .body code { font-size: 0.8rem; color: #16191c; }
+    body { background: #f1f2f4; color: #16191c; font-family: 'Inter', sans-serif; padding: 3rem 1rem 4rem; }
+    .wrap { max-width: 1240px; margin: 0 auto; }
+    h1 { font-size: 2rem; letter-spacing: -.02em; margin-bottom: .4rem; }
+    p.lead { color: #5b636b; margin-bottom: 2.2rem; max-width: 720px; }
+    h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: #5b636b; margin: 2.8rem 0 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.2rem; }
+    a.card { display: block; background: #fff; border: 1px solid #dde1e4; border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    a.card:hover { border-color: #16191c; transform: translateY(-3px); box-shadow: 0 18px 30px -22px rgba(0,0,0,.4); }
+    .thumb { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #e4e6e9; border-bottom: 1px solid #e6e8ea; }
+    .thumb iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+    .body { padding: 1rem 1.15rem 1.2rem; }
+    .body small { font-size: .72rem; color: #5b636b; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
+    .body h3 { font-size: 1.08rem; margin: .2rem 0 .35rem; }
+    .body p { font-size: .9rem; color: #5b636b; line-height: 1.5; }
+    .body code { font-size: .8rem; color: #16191c; background: #f1f2f4; padding: .05rem .35rem; border-radius: 4px; }
+    .star { display: inline-block; background: #e8860c; color: #fff; font-size: .7rem; font-weight: 700; padding: .12rem .5rem; border-radius: 999px; margin-left: .4rem; vertical-align: middle; letter-spacing: .04em; }
   </style>
 </head>
 <body>
 <div class="wrap">
   <h1>B Proud Company – varianty webu</h1>
-  <p class="lead">Stejný obsah, různé barvy a design. Klikněte na variantu pro otevření.</p>
+  <p class="lead">Stejný obsah, různé barvy a design. Náhledy jsou živé stránky – kliknutím variantu otevřete. Fotografie v nových variantách jsou ilustrační (Unsplash) a počítá se s jejich nahrazením vlastními realizacemi.</p>
+
+  <h2>Původní design</h2>
   <div class="grid">
-    <a class="card" href="../bproud/"><div class="sw"><span style="background:#0d0d0d"></span><span style="background:#1f1f1f"></span><span style="background:#e8860c"></span><span style="background:#efefef"></span></div>
-      <div class="body"><small>Původní · tmavá</small><h2>1 · Oranžová na černé</h2><p>Výchozí verze webu. <code>/bproud/</code></p></div></a>
-    <a class="card" href="../bproud2/"><div class="sw"><span style="background:#f2ede7"></span><span style="background:#ddd5cb"></span><span style="background:#b8620a"></span><span style="background:#1e1710"></span></div>
-      <div class="body"><small>Původní · světlá</small><h2>2 · Světlá béžová</h2><p>Světlá varianta původního webu. <code>/bproud2/</code></p></div></a>
-    <a class="card" href="../bproud3/"><div class="sw"><span style="background:#0f151c"></span><span style="background:#223040"></span><span style="background:#f5c400"></span><span style="background:#e8eef4"></span></div>
-      <div class="body"><small>Barevná varianta</small><h2>3 · Grafit a signální žlutá</h2><p>Původní rozvržení, modrošedá tmavá paleta se žlutou jako na stavebních strojích. <code>/bproud3/</code></p></div></a>
-    <a class="card" href="../bproud4/"><div class="sw"><span style="background:#e6e8ea"></span><span style="background:#cdd2d7"></span><span style="background:#c8261b"></span><span style="background:#15191d"></span></div>
-      <div class="body"><small>Barevná varianta</small><h2>4 · Beton a signální červená</h2><p>Původní rozvržení ve světlé chladné šedé s červeným akcentem. <code>/bproud4/</code></p></div></a>
-    <a class="card" href="../bproud5/"><div class="sw"><span style="background:#f3f6f8"></span><span style="background:#2563a8"></span><span style="background:#13233a"></span><span style="background:#d23c2a"></span></div>
-      <div class="body"><small>Nový design</small><h2>5 · Technický výkres</h2><p>Milimetrový papír, výkres budovy s pozicemi A–I propojenými s legendou služeb, kontakt jako razítko výkresu. <code>/bproud5/</code></p></div></a>
-    <a class="card" href="../bproud6/"><div class="sw"><span style="background:#ffcc00"></span><span style="background:#121212"></span><span style="background:#ffffff"></span><span style="background:#5c5c5c"></span></div>
-      <div class="body"><small>Nový design</small><h2>6 · Stavební tabule</h2><p>Žlutočerné značení staveniště, úvod jako tabule „Označení stavby“, sekce pro domácnosti a firmy. <code>/bproud6/</code></p></div></a>
-    <a class="card" href="../bproud7/"><div class="sw"><span style="background:#f6f7f5"></span><span style="background:#e2ebe9"></span><span style="background:#0b7a75"></span><span style="background:#0e1b2b"></span></div>
-      <div class="body"><small>Nový design · B2C / B2B</small><h2>7 · Domácnost × Firma</h2><p>Čistý korporátní styl s přepínačem publika – mění nadpis, doporučené služby i výzvu k akci. <code>/bproud7/</code></p></div></a>
-    <a class="card" href="../bproud8/"><div class="sw"><span style="background:#d3d0ca"></span><span style="background:#e3bd3f"></span><span style="background:#c4372b"></span><span style="background:#22211f"></span></div>
-      <div class="body"><small>Nový design</small><h2>8 · Vzorník materiálů</h2><p>Každá služba jako vzorek materiálu – obklad, izolační fólie, omítka, cihla, vrstvy zeminy. <code>/bproud8/</code></p></div></a>
-    <a class="card" href="../bproud9/"><div class="sw"><span style="background:#3a4a5c"></span><span style="background:#2a3139"></span><span style="background:#ff6a13"></span><span style="background:#3b2c20"></span></div>
-      <div class="body"><small>Nový design</small><h2>9 · Řez stavbou</h2><p>Scroll od střechy po základy s živou výškovou kótou; služby seřazené podle místa v budově. <code>/bproud9/</code></p></div></a>
-    <a class="card" href="../bproud10/"><div class="sw"><span style="background:#e3e9e2"></span><span style="background:#fbfbf8"></span><span style="background:#2f6f4e"></span><span style="background:#f1e27a"></span></div>
-      <div class="body"><small>Nový design · poptávka</small><h2>10 · Poptávkový list</h2><p>Interaktivní poptávka: výběr zákazníka a služeb, náhled e-mailu a odeslání jedním klikem. <code>/bproud10/</code></p></div></a>
+    <a class="card" href="../bproud5/"><div class="thumb"><iframe data-src="../bproud5/index.html" title="Náhled 5" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Původní · tmavý + přepínač</small><h3>5 · Původní s přepínačem režimu <span class="star">DOPORUČENO</span></h3><p>Původní tmavý design s tlačítkem pro světlý režim v navigaci. Volba se ukládá do cookie <code>bproud_theme</code> na 1 rok. <code>/bproud5/</code></p></div></a>
+    <a class="card" href="../bproud/"><div class="thumb"><iframe data-src="../bproud/index.html" title="Náhled 1" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Původní · tmavá</small><h3>1 · Oranžová na černé</h3><p>Výchozí verze webu. <code>/bproud/</code></p></div></a>
+    <a class="card" href="../bproud2/"><div class="thumb"><iframe data-src="../bproud2/index.html" title="Náhled 2" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Původní · světlá</small><h3>2 · Světlá béžová</h3><p>Světlá varianta původního webu. <code>/bproud2/</code></p></div></a>
+    <a class="card" href="../bproud3/"><div class="thumb"><iframe data-src="../bproud3/index.html" title="Náhled 3" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Barevná varianta</small><h3>3 · Grafit a signální žlutá</h3><p>Původní rozvržení v modrošedé se žlutou. <code>/bproud3/</code></p></div></a>
+    <a class="card" href="../bproud4/"><div class="thumb"><iframe data-src="../bproud4/index.html" title="Náhled 4" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Barevná varianta</small><h3>4 · Beton a signální červená</h3><p>Původní rozvržení ve světlé šedé s červenou. <code>/bproud4/</code></p></div></a>
+  </div>
+
+  <h2>Nové designy (s fotografiemi)</h2>
+  <div class="grid">
+    <a class="card" href="../bproud6/"><div class="thumb"><iframe data-src="../bproud6/index.html" title="Náhled 6" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Tmavý · fotografický hero</small><h3>6 · Klasik s fotografií</h3><p>DNA původního webu (Oswald, oranžová) + celostránková fotka, kontaktní lišta, karty služeb s fotkami, CTA pás a mapa. <code>/bproud6/</code></p></div></a>
+    <a class="card" href="../bproud7/"><div class="thumb"><iframe data-src="../bproud7/index.html" title="Náhled 7" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Světlý · minimalistický</small><h3>7 · Nordic minimal</h3><p>Bílá, hodně prostoru, seznam služeb s náhledem fotky u kurzoru, posuvná galerie. <code>/bproud7/</code></p></div></a>
+    <a class="card" href="../bproud8/"><div class="thumb"><iframe data-src="../bproud8/index.html" title="Náhled 8" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Tmavý · prémiový</small><h3>8 · Dark premium</h3><p>Prolínací slideshow v úvodu, rozbalovací fotopanely služeb, černobílá galerie s barvou při najetí. <code>/bproud8/</code></p></div></a>
+    <a class="card" href="../bproud9/"><div class="thumb"><iframe data-src="../bproud9/index.html" title="Náhled 9" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Světlý · korporátní</small><h3>9 · Corporate navy</h3><p>Horní kontaktní lišta, rychlé odkazy, záložky Domácnosti / Firmy, žlutý CTA pás, poptávkový formulář. <code>/bproud9/</code></p></div></a>
+    <a class="card" href="../bproud10/"><div class="thumb"><iframe data-src="../bproud10/index.html" title="Náhled 10" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Tmavý · showreel</small><h3>10 · Záložkový hero</h3><p>Úvod se střídá mezi obory (rekonstrukce, izolace, zemní práce, doprava) s průběhem a fotkou. <code>/bproud10/</code></p></div></a>
+    <a class="card" href="../bproud11/"><div class="thumb"><iframe data-src="../bproud11/index.html" title="Náhled 11" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Světlý · editorial</small><h3>11 · Editorial</h3><p>Velká patková typografie, panoramatická fotka s parallaxou, „kapitoly“ služeb foto/text. <code>/bproud11/</code></p></div></a>
+    <a class="card" href="../bproud12/"><div class="thumb"><iframe data-src="../bproud12/index.html" title="Náhled 12" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Světlý · B2C</small><h3>12 · Před / po</h3><p>Posuvník před/po rekonstrukci v úvodu, postup ve 4 krocích, časté otázky. <code>/bproud12/</code></p></div></a>
+    <a class="card" href="../bproud13/"><div class="thumb"><iframe data-src="../bproud13/index.html" title="Náhled 13" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Tmavý · B2C / B2B</small><h3>13 · Rozdělená obrazovka</h3><p>Úvod rozdělený na Domácnosti a Firmy (při najetí se strana rozšíří), každá má vlastní sekci. <code>/bproud13/</code></p></div></a>
+    <a class="card" href="../bproud14/"><div class="thumb"><iframe data-src="../bproud14/index.html" title="Náhled 14" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Světlý · moderní</small><h3>14 · Bento</h3><p>Dlaždicová mřížka – fotky, fakta (9 služeb, 12 t), kontakt i mapa v kartách. <code>/bproud14/</code></p></div></a>
+    <a class="card" href="../bproud15/"><div class="thumb"><iframe data-src="../bproud15/index.html" title="Náhled 15" tabindex="-1" loading="lazy"></iframe></div>
+      <div class="body"><small>Světlý · scrollytelling</small><h3>15 · Příběh služeb</h3><p>Připnutá fotografie se mění podle služby, kterou právě čtete; zelená + jantarová. <code>/bproud15/</code></p></div></a>
   </div>
 </div>
+<script>
+  // Scale live previews to the card width; load them only when near the viewport
+  const fit = () => document.querySelectorAll('.thumb').forEach(t => { t.querySelector('iframe').style.transform = 'scale(' + (t.clientWidth / 1440) + ')'; });
+  addEventListener('resize', fit); fit();
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { const f = e.target.querySelector('iframe'); if (!f.src) f.src = f.dataset.src; io.unobserve(e.target); }
+  }), { rootMargin: '300px' });
+  document.querySelectorAll('.thumb').forEach(t => io.observe(t));
+</script>
 </body>
 </html>

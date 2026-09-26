@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B Proud Company s.r.o. | Stavební Práce Praha</title>
+  <meta name="description" content="B Proud Company s.r.o. – rekonstrukce, izolace, protipožární prostupy, ploty, výkopy a doprava v Praze. IČO: 06897797.">
+  <link rel="icon" href="../bproud/favicon.ico" sizes="any">
+  <link rel="icon" href="../bproud/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <!-- Varianta 11: Editorial – velká typografie, panoramatická fotografie, střídání foto/text -->
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --bg: #fafaf9; --bg-2: #efefec; --ink: #161616; --ink-2: #66665f; --line: #dcdcd6; --acc: #8a6d3b; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
+    .serif { font-family: 'DM Serif Display', serif; font-weight: 400; }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem; }
+
+    nav { border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(250,250,249,.92); backdrop-filter: blur(10px); z-index: 40; }
+    nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; }
+    .menu { display: flex; gap: 2rem; list-style: none; font-size: .92rem; }
+    .menu a { text-decoration: none; color: var(--ink-2); }
+    .menu a:hover { color: var(--ink); }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 1.6rem; text-decoration: none; letter-spacing: .01em; }
+    .logo i { color: var(--acc); }
+    .nav-r { justify-self: end; font-size: .92rem; font-weight: 600; text-decoration: none; }
+    .nav-r:hover { color: var(--acc); }
+
+    /* HERO */
+    .hero { padding: 4.5rem 0 3rem; }
+    .hero-meta { display: flex; justify-content: space-between; font-size: .85rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: .14em; border-bottom: 1px solid var(--ink); padding-bottom: 1rem; margin-bottom: 2rem; }
+    h1 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(3.4rem, 9.4vw, 9.5rem); line-height: .92; letter-spacing: -.025em; }
+    h1 i { color: var(--acc); }
+    .hero-foot { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2.5rem; align-items: end; }
+    .hero-foot p { max-width: 520px; color: var(--ink-2); font-size: 1.1rem; }
+    .hero-foot .cta { justify-self: end; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 600; padding: 1rem 1.6rem; background: var(--ink); color: var(--bg); transition: background .25s; }
+    .btn:hover { background: var(--acc); }
+    .btn.line { background: none; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+    .btn.line:hover { background: var(--ink); color: var(--bg); }
+    .pano { height: 78vh; min-height: 420px; overflow: hidden; position: relative; }
+    .pano img { position: absolute; left: 0; width: 100%; height: 130%; top: -15%; object-fit: cover; will-change: transform; }
+    .pano figcaption { position: absolute; right: 2.5rem; bottom: 1.5rem; color: #fff; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+
+    /* INTRO */
+    .intro { padding: 8rem 0; }
+    .intro .wrap { display: grid; grid-template-columns: 260px 1fr; gap: 3rem; }
+    .kicker { font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); padding-top: .8rem; }
+    .intro p.big { font-family: 'DM Serif Display', serif; font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.2; }
+    .intro p.big i { color: var(--acc); }
+    .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 4rem; }
+    .cols div { border-top: 1px solid var(--ink); padding-top: 1rem; }
+    .cols b { display: block; font-weight: 600; margin-bottom: .3rem; }
+    .cols span { color: var(--ink-2); font-size: .95rem; }
+
+    /* CHAPTERS */
+    .chapter { display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; border-top: 1px solid var(--line); }
+    .chapter.rev .ph { order: 2; }
+    .chapter .ph { position: relative; overflow: hidden; }
+    .chapter .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s ease; }
+    .chapter:hover .ph img { transform: scale(1.03); }
+    .chapter .tx { padding: 6rem 5rem; display: flex; flex-direction: column; justify-content: center; }
+    .ch-no { font-family: 'DM Serif Display', serif; font-style: italic; color: var(--acc); font-size: 1.3rem; margin-bottom: .6rem; }
+    h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(2.4rem, 4.4vw, 4rem); line-height: 1; letter-spacing: -.02em; margin-bottom: 1.4rem; }
+    .chapter .tx > p { color: var(--ink-2); max-width: 480px; margin-bottom: 2.2rem; }
+    .svc { list-style: none; border-top: 1px solid var(--ink); }
+    .svc li { padding: 1.1rem 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1.3fr; gap: 1.5rem; }
+    .svc b { font-weight: 600; }
+    .svc span { color: var(--ink-2); font-size: .94rem; }
+
+    /* QUOTE */
+    .quote { background: var(--ink); color: var(--bg); padding: 8rem 0; text-align: center; }
+    .quote blockquote { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4.2vw, 3.8rem); line-height: 1.15; max-width: 1100px; margin: 0 auto; }
+    .quote blockquote i { color: #c9a86a; }
+    .quote cite { display: block; margin-top: 2rem; font-style: normal; font-size: .85rem; letter-spacing: .16em; text-transform: uppercase; color: #9a9a92; }
+    .vals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 1100px; margin: 4.5rem auto 0; text-align: left; }
+    .vals div { border-top: 1px solid #3a3a36; padding-top: 1rem; }
+    .vals b { display: block; }
+    .vals span { color: #9a9a92; font-size: .92rem; }
+
+    /* GALLERY */
+    .gal-sec { padding: 8rem 0 6rem; }
+    .gal-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
+    .strip { display: flex; gap: 1.2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 2.5rem 1.2rem; scrollbar-width: thin; }
+    .strip figure { flex: 0 0 auto; scroll-snap-align: start; }
+    .strip img { height: 460px; width: auto; aspect-ratio: var(--ar, 3/4); object-fit: cover; }
+    .strip figcaption { font-size: .85rem; color: var(--ink-2); padding-top: .6rem; }
+    .strip figcaption b { color: var(--ink); font-weight: 600; margin-right: .5rem; }
+
+    /* CONTACT */
+    #kontakt { border-top: 1px solid var(--ink); padding: 7rem 0; }
+    #kontakt .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; }
+    .big-link { display: block; font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: 1.05; text-decoration: none; transition: color .2s; }
+    .big-link:hover { color: var(--acc); }
+    .big-link.i { font-style: italic; color: var(--ink-2); }
+    #kontakt dl { display: grid; grid-template-columns: 120px 1fr; align-self: end; }
+    #kontakt dt, #kontakt dd { padding: .9rem 0; border-top: 1px solid var(--line); }
+    #kontakt dt { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); padding-top: 1.05rem; }
+
+    footer { padding: 2rem 0; border-top: 1px solid var(--line); font-size: .85rem; color: var(--ink-2); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 1000px) {
+      .wrap { padding: 0 1.25rem; }
+      nav .wrap { grid-template-columns: 1fr auto; }
+      .menu { display: none; }
+      .hero { padding-top: 2.5rem; }
+      .hero-meta span:last-child { display: none; }
+      .hero-foot, .intro .wrap, #kontakt .wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-foot .cta { justify-self: start; }
+      .intro { padding: 5rem 0; }
+      .cols, .vals { grid-template-columns: 1fr 1fr; }
+      .chapter { grid-template-columns: 1fr; min-height: 0; }
+      .chapter .ph { min-height: 320px; order: 0 !important; }
+      .chapter .tx { padding: 3rem 1.25rem 4rem; }
+      .svc li { grid-template-columns: 1fr; gap: .2rem; }
+      .strip { padding: 0 1.25rem 1rem; }
+      .strip img { height: 340px; }
+      .pano figcaption { right: 1.25rem; }
+    }
+    @media (max-width: 560px) { .cols, .vals { grid-template-columns: 1fr; } .quote { padding: 5rem 0; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <ul class="menu">
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#galerie">Realizace</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#" class="logo">B Proud <i>&amp;</i> Co.</a>
+    <a class="nav-r" href="tel:+420777052539">+420 777 052 539</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-meta"><span>Stavební práce · Praha</span><span>Domácnosti · SVJ · Firmy</span></div>
+    <h1>Stavíme domovy<br>i provozy <i>s péčí.</i></h1>
+    <div class="hero-foot">
+      <p>Rekonstrukce bytů, izolace vzduchotechniky a fasád, protipožární prostupy, ploty, výkopy i doprava s hydraulickou rukou. S důrazem na preciznost, spolehlivost a moderní přístupy.</p>
+      <div class="cta"><a class="btn" href="#kontakt">Nezávazná poptávka</a><a class="btn line" href="#sluzby">Služby</a></div>
+    </div>
+  </div>
+</header>
+<figure class="pano"><img id="pano" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=75" alt="Moderní dům – ilustrační fotografie"><figcaption>Ilustrační fotografie</figcaption></figure>
+
+<section class="intro" id="onas">
+  <div class="wrap">
+    <div class="kicker">Naše filozofie</div>
+    <div>
+      <p class="big reveal">Každý projekt realizujeme s nasazením a péčí, <i>jako by šlo o náš vlastní domov.</i> Tato filozofie nás provází od vzniku společnosti.</p>
+      <div class="cols">
+        <div><b>Kvalita</b><span>Nekompromisní kvalita ve všech pracích – každý detail hraje roli.</span></div>
+        <div><b>Spolehlivost</b><span>Dodržujeme dohodnuté termíny a závazky bez výjimky.</span></div>
+        <div><b>Inovace</b><span>Sledujeme nejnovější trendy a technologie stavebnictví.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="sluzby">
+  <article class="chapter">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1400&q=75" alt="Kuchyně – ilustrační fotografie" loading="lazy"></div>
+    <div class="tx">
+      <div class="ch-no">Kapitola první</div>
+      <h2>Interiéry</h2>
+      <p>Praktický, pohodlný a moderní domov podle vašich představ – od bourání až po hotové jádro.</p>
+      <ul class="svc">
+        <li><b>Rekonstrukce bytu</b><span>Proměna bytových jader a kuchyní.</span></li>
+        <li><b>Bourací práce</b><span>Precizní a bezpečné odstranění stavebních prvků dle vašich plánů.</span></li>
+      </ul>
+    </div>
+  </article>
+  <article class="chapter rev">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1597047084897-51e81819a499?auto=format&fit=crop&w=1400&q=75" alt="Fasáda bytového domu – ilustrační fotografie" loading="lazy"></div>
+    <div class="tx">
+      <div class="ch-no">Kapitola druhá</div>
+      <h2>Izolace a technologie</h2>
+      <p>Tepelná ochrana budov, efektivní řízení klimatu a požární bezpečnost.</p>
+      <ul class="svc">
+        <li><b>Izolace vzduchotechniky</b><span>Kompletní izolace pro vzduchotechniku, topení a chlazení.</span></li>
+        <li><b>Izolace fasády</b><span>Isocer, Caparol, Baumit a Weber – tepelná ochrana i vzhled.</span></li>
+        <li><b>Protipožární prostupy</b><span>Zajištění prostupů a dodržení všech požárních předpisů.</span></li>
+        <li><b>Výměna chladících jednotek</b><span>Jednotky i věže pro optimální chod chladícího systému.</span></li>
+      </ul>
+    </div>
+  </article>
+  <article class="chapter">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1580901368919-7738efb0f87e?auto=format&fit=crop&w=1400&q=75" alt="Bagr – ilustrační fotografie" loading="lazy"></div>
+    <div class="tx">
+      <div class="ch-no">Kapitola třetí</div>
+      <h2>Pozemek a zemní práce</h2>
+      <p>Od hranice pozemku po základy – včetně dopravy materiálu na místo.</p>
+      <ul class="svc">
+        <li><b>Ploty a brány</b><span>Stavba plotů včetně plotových polí.</span></li>
+        <li><b>Výkopové práce</b><span>Ruční výkopy i bagrování a strojní výkopy.</span></li>
+        <li><b>Doprava s hydraulickou rukou</b><span>Manipulace s náklady do 12 tun přímo na staveniště.</span></li>
+      </ul>
+    </div>
+  </article>
+</div>
+
+<section class="quote">
+  <div class="wrap">
+    <blockquote class="reveal">„Jeden partner pro veškeré vaše stavební potřeby – <i>na jednom místě.</i>“</blockquote>
+    <cite>B Proud Company s.r.o.</cite>
+    <div class="vals">
+      <div><b>Zkušenosti</b><span>Tým profesionálů s bohatými zkušenostmi.</span></div>
+      <div><b>Flexibilita</b><span>Přizpůsobíme se termínům i rozsahu.</span></div>
+      <div><b>Široká škála</b><span>Devět oborů stavebních prací.</span></div>
+      <div><b>Osobní přístup</b><span>Individuální péče v každé fázi.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gal-sec" id="galerie">
+  <div class="wrap gal-head"><div><div class="kicker" style="padding:0 0 .6rem">Realizace</div><h2 style="margin:0">Ukázky prací</h2></div><span style="color:var(--ink-2);font-size:.9rem">Posuňte do strany →</span></div>
+  <div class="strip">
+    <figure><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=72" style="--ar:4/3" alt="" loading="lazy"><figcaption><b>01</b>Obývací prostor</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=700&q=72" alt="" loading="lazy"><figcaption><b>02</b>Koupelna</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=72" style="--ar:4/3" alt="" loading="lazy"><figcaption><b>03</b>Plot a vstup</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1574359411659-15573a27fd0c?auto=format&fit=crop&w=700&q=72" alt="" loading="lazy"><figcaption><b>04</b>Fasáda</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1587582423116-ec07293f0395?auto=format&fit=crop&w=700&q=72" alt="" loading="lazy"><figcaption><b>05</b>Konstrukce</figcaption></figure>
+    <figure><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=72" style="--ar:4/3" alt="" loading="lazy"><figcaption><b>06</b>Kuchyně</figcaption></figure>
+  </div>
+  <div class="wrap"><p style="color:var(--ink-2);font-size:.82rem;margin-top:1rem">Ilustrační fotografie – budou nahrazeny fotografiemi vlastních realizací.</p></div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <div>
+      <div class="kicker" style="padding:0 0 1rem">Kontakt</div>
+      <a class="big-link" href="tel:+420777052539">+420 777 052 539</a>
+      <a class="big-link i" href="mailto:bproud@email.cz">bproud@email.cz</a>
+    </div>
+    <dl>
+      <dt>Firma</dt><dd>B Proud Company s.r.o.</dd>
+      <dt>Sídlo</dt><dd>Dlouhá 730/35, Praha 1 – Staré Město, 110 00</dd>
+      <dt>Jednatel</dt><dd>Ing. Haetchi Victor Nicolae</dd>
+      <dt>IČO / DIČ</dt><dd>06897797 / CZ06897797</dd>
+    </dl>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> B Proud Company s.r.o.</span><span>Ilustrační foto: Unsplash</span></div></footer>
+
+<script>
+  // Gentle parallax on the panorama
+  const pano = document.getElementById('pano');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addEventListener('scroll', () => {
+      const r = pano.parentElement.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < innerHeight) pano.style.transform = 'translateY(' + (r.top * -0.12) + 'px)';
+    }, { passive: true });
+  }
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

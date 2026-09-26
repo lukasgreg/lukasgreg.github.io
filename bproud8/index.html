@@ -4,253 +4,290 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B Proud Company s.r.o. | Stavební Práce Praha</title>
-  <meta name="description" content="B Proud Company s.r.o. – rekonstrukce, izolace vzduchotechniky a fasád, protipožární prostupy, ploty, výkopy a doprava v Praze. IČO: 06897797.">
+  <meta name="description" content="B Proud Company s.r.o. – rekonstrukce, izolace, protipožární prostupy, ploty, výkopy a doprava v Praze. IČO: 06897797.">
   <link rel="icon" href="../bproud/favicon.ico" sizes="any">
   <link rel="icon" href="../bproud/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Work+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <!-- Varianta 8: „Vzorník“ – služby jako vzorky materiálů -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Varianta 8: Tmavá, fotografická – slideshow v úvodu, rozbalovací panely služeb -->
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --concrete: #d3d0ca;
-      --concrete-2: #c4c0b9;
-      --char:  #22211f;
-      --char-2:#5a5751;
-      --off:   #f3f1ed;
-      --wool:  #e3bd3f;
-      --red:   #c4372b;
-    }
+    :root { --bg: #0a0a0a; --bg-2: #121212; --bg-3: #1a1a1a; --text: #ececec; --text-2: #8d8d8d; --line: rgba(255,255,255,.1); --gold: #c9a063; }
     html { scroll-behavior: smooth; }
-    body {
-      background-color: var(--concrete);
-      background-image:
-        radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1.2px),
-        radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1.2px);
-      background-size: 7px 7px, 11px 11px;
-      background-position: 0 0, 3px 5px;
-      color: var(--char); font-family: 'Work Sans', sans-serif; font-size: 16.5px; line-height: 1.6;
-    }
-    .disp { font-family: 'Big Shoulders Display', sans-serif; }
-    .mono { font-family: 'DM Mono', monospace; }
+    body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 17px; line-height: 1.7; }
+    img { display: block; max-width: 100%; }
     a { color: inherit; }
-    :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+    :focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 0 2.5rem; }
+    .disp { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
 
-    nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.2rem; padding-bottom: 1.2rem; }
-    .logo { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 1.8rem; text-decoration: none; letter-spacing: 0.02em; line-height: 1; }
-    .logo small { display: block; font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 400; letter-spacing: 0.12em; color: var(--char-2); }
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; font-weight: 500; }
-    .nav-links a { text-decoration: none; }
-    .nav-links a:hover { color: var(--red); }
-    .pill { background: var(--char); color: var(--off); text-decoration: none; padding: 0.55rem 1rem; font-weight: 600; font-size: 0.92rem; white-space: nowrap; }
-    .pill:hover { background: var(--red); }
+    #nav { position: fixed; inset: 0 0 auto; z-index: 60; transition: background .4s; }
+    #nav.solid { background: rgba(10,10,10,.92); backdrop-filter: blur(12px); }
+    #nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 88px; }
+    .logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1.6rem; letter-spacing: .32em; text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .menu { display: flex; gap: 2.6rem; list-style: none; }
+    .menu a { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: .95rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; color: #bdbdbd; transition: color .2s; }
+    .menu a:hover { color: var(--gold); }
+    .tel { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: .12em; text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
 
-    /* HERO */
-    .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: center; padding-top: 3rem; padding-bottom: 5rem; }
-    h1 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(3.4rem, 8vw, 7rem); line-height: 0.96; text-transform: uppercase; }
-    h1 span { display: block; color: var(--off); -webkit-text-stroke: 2px var(--char); }
-    .lead { max-width: 460px; margin: 1.5rem 0 2rem; font-size: 1.08rem; color: #3a3834; }
-    .btn { display: inline-block; background: var(--char); color: var(--off); padding: 1rem 1.6rem; text-decoration: none; font-weight: 600; margin-right: 0.6rem; margin-bottom: 0.6rem; }
-    .btn:hover { background: var(--red); }
-    .btn.alt { background: transparent; color: var(--char); box-shadow: inset 0 0 0 2px var(--char); }
-    .btn.alt:hover { background: var(--char); color: var(--off); }
+    /* HERO SLIDESHOW */
+    #hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
+    .slide.on { opacity: 1; }
+    .slide div { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.12); }
+    .slide.on div { animation: kb 8s linear forwards; }
+    @keyframes kb { from { transform: scale(1.12); } to { transform: scale(1); } }
+    #hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 60%, rgba(0,0,0,.35), rgba(0,0,0,.8)), linear-gradient(0deg, #0a0a0a 0%, transparent 35%); }
+    .hero-txt { position: absolute; z-index: 2; left: 0; right: 0; bottom: 18%; }
+    .hero-txt .over { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: .45em; text-transform: uppercase; color: var(--gold); font-size: .9rem; margin-bottom: 1.4rem; }
+    h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; text-transform: uppercase; font-size: clamp(3.4rem, 9vw, 8.6rem); line-height: .9; letter-spacing: .01em; }
+    h1 span { display: block; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.85); }
+    .hero-row { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-top: 2.4rem; flex-wrap: wrap; }
+    .hero-row p { max-width: 460px; color: #c9c9c9; }
+    .ghost { display: inline-flex; align-items: center; gap: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding: 1rem 1.8rem; border: 1px solid rgba(255,255,255,.4); transition: background .3s, color .3s, border-color .3s; }
+    .ghost:hover { background: var(--gold); border-color: var(--gold); color: #0a0a0a; }
+    .ghost svg { width: 18px; height: 18px; }
+    .counter { position: absolute; z-index: 2; right: 2.5rem; bottom: 2.4rem; display: flex; align-items: center; gap: 1rem; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .15em; }
+    .counter .bar { width: 120px; height: 1px; background: rgba(255,255,255,.25); position: relative; overflow: hidden; }
+    .counter .bar i { position: absolute; inset: 0; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+    .counter .bar i.run { animation: prog 6s linear forwards; }
+    @keyframes prog { to { transform: scaleX(1); } }
+    .counter .lbl { color: var(--text-2); font-size: .85rem; min-width: 190px; text-align: right; text-transform: uppercase; }
 
-    .fan { position: relative; height: 440px; }
-    .fan .sw { position: absolute; width: 58%; aspect-ratio: 3/4; box-shadow: 0 18px 30px -12px rgba(0,0,0,0.45); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
-    .fan .sw:nth-child(1) { left: 4%; top: 12%; transform: rotate(-11deg); }
-    .fan .sw:nth-child(2) { left: 22%; top: 4%; transform: rotate(-2deg); }
-    .fan .sw:nth-child(3) { left: 40%; top: 10%; transform: rotate(8deg); }
-    .fan:hover .sw:nth-child(1) { transform: rotate(-16deg) translateX(-14px); }
-    .fan:hover .sw:nth-child(3) { transform: rotate(13deg) translateX(14px); }
-    .sw .tag { position: absolute; left: 0; right: 0; bottom: 0; background: var(--off); padding: 0.6rem 0.8rem; border-top: 1px solid rgba(0,0,0,0.15); }
-    .sw .tag b { display: block; font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 1.15rem; text-transform: uppercase; line-height: 1.1; }
-    .sw .tag i { font-style: normal; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--char-2); }
+    section { padding: 8rem 0; }
+    .over2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); font-size: .85rem; margin-bottom: 1rem; }
+    h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; text-transform: uppercase; font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: .95; }
+    .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+    .intro p { color: var(--text-2); max-width: 520px; }
 
-    /* MATERIAL TEXTURES */
-    .t-tile { background-color: #f4f4f2; background-image: linear-gradient(#b9b6b0 2px, transparent 2px), linear-gradient(90deg, #b9b6b0 2px, transparent 2px); background-size: 34px 34px; }
-    .t-fence { background-color: #3c4a3e; background-image: repeating-linear-gradient(90deg, #4f6152 0 22px, #2e3a30 22px 26px); }
-    .t-foil { background-color: #c9ced1; background-image: linear-gradient(115deg, rgba(255,255,255,0.7) 0 10%, transparent 25% 45%, rgba(255,255,255,0.5) 55%, transparent 70%), repeating-linear-gradient(35deg, rgba(0,0,0,0.05) 0 3px, transparent 3px 9px), repeating-linear-gradient(-50deg, rgba(255,255,255,0.35) 0 2px, transparent 2px 13px); }
-    .t-render { background-color: #e9e2d2; background-image: radial-gradient(rgba(0,0,0,0.13) 1.2px, transparent 1.6px), radial-gradient(rgba(255,255,255,0.8) 1px, transparent 1.4px), radial-gradient(rgba(0,0,0,0.08) 2px, transparent 2.5px); background-size: 6px 6px, 9px 9px, 17px 17px; background-position: 0 0, 2px 4px, 5px 1px; }
-    .t-fire { background-color: var(--red); background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.14) 0 6px, transparent 6px 14px); }
-    .t-fan { background-color: #8f989c; background-image: repeating-radial-gradient(circle at 50% 42%, #6d7579 0 2px, transparent 2px 10px); }
-    .t-brick { background-color: #a8553a; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='28'%3E%3Cg fill='none' stroke='%23d7cfc2' stroke-width='3'%3E%3Cpath d='M0 1.5H60M0 15.5H60M1.5 0V14M31.5 14V28'/%3E%3C/g%3E%3C/svg%3E"); background-size: 60px 28px; }
-    .t-soil { background-image: radial-gradient(rgba(0,0,0,0.25) 1.5px, transparent 2px), linear-gradient(#6b8a46 0 7%, #4a3726 7% 30%, #6d5236 30% 52%, #8b6e4a 52% 74%, #a38d6b 74%); background-size: 13px 11px, 100% 100%; }
-    .t-plate { background-color: #7d8488; background-image: linear-gradient(45deg, transparent 42%, rgba(255,255,255,0.45) 42% 58%, transparent 58%), linear-gradient(-45deg, transparent 42%, rgba(0,0,0,0.2) 42% 58%, transparent 58%); background-size: 22px 22px, 22px 22px; background-position: 0 0, 11px 11px; }
+    /* EXPANDING PANELS */
+    .panels { display: flex; gap: 6px; height: 620px; }
+    .panel { position: relative; flex: 1; overflow: hidden; cursor: pointer; transition: flex .8s cubic-bezier(.2,.8,.2,1); outline: none; }
+    .panel.open { flex: 3.2; }
+    .panel .bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: grayscale(1) brightness(.45); transform: scale(1.05); transition: filter .8s, transform 1.2s; }
+    .panel.open .bg { filter: grayscale(0) brightness(.5); transform: scale(1); }
+    .panel .inner { position: absolute; inset: 0; padding: 2.4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+    .panel .idx { font-family: 'Barlow Condensed', sans-serif; color: var(--gold); letter-spacing: .2em; margin-bottom: .6rem; }
+    .panel h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; text-transform: uppercase; font-size: 2.1rem; line-height: 1; white-space: nowrap; }
+    .panel ul { list-style: none; margin-top: 1.4rem; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .8s, opacity .5s; }
+    .panel.open ul { max-height: 420px; opacity: 1; transition-delay: .25s; }
+    .panel li { padding: .9rem 0; border-top: 1px solid rgba(255,255,255,.18); display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; }
+    .panel li b { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 1.25rem; text-transform: uppercase; letter-spacing: .04em; }
+    .panel li span { color: #c4c4c4; font-size: .93rem; }
 
-    /* SECTIONS */
-    section { padding: 5rem 0; }
-    .head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; margin-bottom: 2.5rem; border-bottom: 2px solid var(--char); padding-bottom: 1rem; }
-    .head .k { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--char-2); }
-    h2 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(2.6rem, 5vw, 4.2rem); text-transform: uppercase; line-height: 0.9; }
-    .head p { max-width: 460px; color: #3a3834; }
+    /* ABOUT */
+    #onas { background: var(--bg-2); }
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .about-img { position: relative; }
+    .about-img img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: grayscale(.3); }
+    .about-img::after { content: ''; position: absolute; top: -1.5rem; right: -1.5rem; width: 45%; height: 45%; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+    .about p.lead { color: #bdbdbd; font-size: 1.15rem; margin: 1.6rem 0 3rem; }
+    .vals { display: grid; grid-template-columns: 1fr 1fr; gap: 2.2rem 3rem; }
+    .vals div { border-left: 1px solid var(--gold); padding-left: 1.2rem; }
+    .vals b { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 1.3rem; text-transform: uppercase; letter-spacing: .06em; }
+    .vals span { color: var(--text-2); font-size: .95rem; }
 
-    .book { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-    .sample { background: var(--off); box-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 14px 24px -16px rgba(0,0,0,0.4); display: flex; flex-direction: column; transition: transform .25s; }
-    .sample:hover { transform: translateY(-4px) rotate(-0.6deg); }
-    .sample .face { aspect-ratio: 16/9; position: relative; }
-    .sample .face::after { content: attr(data-code); position: absolute; top: 0.6rem; left: 0.6rem; background: var(--off); font-family: 'DM Mono', monospace; font-size: 0.68rem; padding: 0.15rem 0.45rem; }
-    .sample .body { padding: 1.1rem 1.2rem 1.3rem; flex: 1; display: flex; flex-direction: column; }
-    .sample h3 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 800; font-size: 1.55rem; text-transform: uppercase; line-height: 1; margin-bottom: 0.5rem; }
-    .sample p { color: #45423d; font-size: 0.95rem; flex: 1; }
-    .spec { margin-top: 1rem; display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.8rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; border-top: 1px dashed #aaa59c; padding-top: 0.7rem; }
-    .spec dt { color: var(--char-2); }
+    /* GALLERY */
+    .gal { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 120px; gap: 6px; }
+    .gal figure { overflow: hidden; position: relative; }
+    .gal figure:nth-child(1) { grid-column: 1 / 8; grid-row: span 4; }
+    .gal figure:nth-child(2) { grid-column: 8 / 13; grid-row: span 2; }
+    .gal figure:nth-child(3) { grid-column: 8 / 13; grid-row: span 2; }
+    .gal figure:nth-child(4) { grid-column: 1 / 5; grid-row: span 3; }
+    .gal figure:nth-child(5) { grid-column: 5 / 13; grid-row: span 3; }
+    .gal img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) brightness(.8); transition: filter .7s, transform 1s; }
+    .gal figure:hover img { filter: none; transform: scale(1.04); }
+    .gal figcaption { position: absolute; left: 1.2rem; bottom: 1rem; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .2em; text-transform: uppercase; font-size: .9rem; }
+    .note { color: #5c5c5c; font-size: .82rem; margin-top: 1.2rem; }
 
-    #onas { background: var(--char); color: var(--off); }
-    #onas .head { border-color: var(--off); }
-    #onas .head p, #onas .head .k { color: #bdb8ae; }
-    .vals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid #4a4843; }
-    .vals div { padding: 1.8rem; border-right: 1px solid #4a4843; }
-    .vals div:last-child { border-right: 0; }
-    .vals h3 { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; color: var(--wool); line-height: 1; margin-bottom: 0.4rem; }
-    .vals p { color: #bdb8ae; }
-    .why { margin-top: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; list-style: none; }
-    .why li { border-top: 3px solid var(--wool); padding-top: 0.8rem; }
-    .why strong { display: block; font-weight: 600; }
-    .why span { color: #bdb8ae; font-size: 0.93rem; }
+    /* CONTACT */
+    #kontakt { border-top: 1px solid var(--line); text-align: center; }
+    .phone { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: clamp(3rem, 9vw, 7.5rem); line-height: 1; text-decoration: none; margin: 1.6rem 0 1rem; transition: color .3s; }
+    .phone:hover { color: var(--gold); }
+    .mail { font-size: 1.2rem; color: var(--gold); text-decoration: none; }
+    .ct-row { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 5rem; border-top: 1px solid var(--line); text-align: left; }
+    .ct-row div { padding: 1.8rem 1.5rem 0 0; }
+    .ct-row small { display: block; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .25em; text-transform: uppercase; color: var(--text-2); font-size: .8rem; margin-bottom: .3rem; }
 
-    .gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .gal div { aspect-ratio: 4/3; background: var(--off); border: 2px dashed var(--char-2); display: grid; place-items: center; font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--char-2); }
-
-    #kontakt .card { background: var(--off); display: grid; grid-template-columns: 1.2fr 1fr; box-shadow: 0 20px 36px -22px rgba(0,0,0,0.5); }
-    #kontakt .card > div { padding: 2.2rem; }
-    #kontakt .card > div:last-child { border-left: 1px solid #d8d4cc; }
-    .phone { font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: clamp(2.4rem, 5.5vw, 4.4rem); text-decoration: none; line-height: 1; display: block; margin: 0.6rem 0 0.8rem; }
-    .phone:hover { color: var(--red); }
-    .mail { font-weight: 600; font-size: 1.1rem; color: var(--red); }
-    #kontakt dl { display: grid; grid-template-columns: auto 1fr; gap: 0.7rem 1.2rem; }
-    #kontakt dt { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--char-2); padding-top: 0.2rem; }
-
-    footer { padding: 2rem 0 2.5rem; font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--char-2); }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0; font-size: .85rem; color: #5c5c5c; }
     footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
     @media (max-width: 960px) {
-      .hero { grid-template-columns: 1fr; }
-      .fan { height: 380px; max-width: 520px; }
-      .book { grid-template-columns: repeat(2, 1fr); }
-      .why { grid-template-columns: repeat(2, 1fr); }
-      #kontakt .card { grid-template-columns: 1fr; }
-      #kontakt .card > div:last-child { border-left: 0; border-top: 1px solid #d8d4cc; }
+      .wrap { padding: 0 1.25rem; }
+      .menu { display: none; }
+      .intro, .about { grid-template-columns: 1fr; gap: 2.5rem; }
+      .panels { flex-direction: column; height: auto; }
+      .panel { flex: none; min-height: 150px; transition: min-height .6s; }
+      .panel.open { min-height: 560px; }
+      .panel h3 { white-space: normal; font-size: 1.7rem; }
+      .panel li { grid-template-columns: 1fr; gap: .1rem; }
+      .panel .inner { padding: 1.4rem; }
+      .gal { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+      .gal figure:nth-child(n) { grid-column: auto; grid-row: auto; }
+      .gal figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+      .gal img { filter: none; }
+      .vals, .ct-row { grid-template-columns: 1fr; }
+      .counter .lbl { display: none; }
+      section { padding: 5rem 0; }
+      .about-img::after { right: -.6rem; top: -.6rem; }
     }
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .fan { height: 300px; }
-      .book, .vals, .why, .gal { grid-template-columns: 1fr; }
-      .vals div { border-right: 0; border-bottom: 1px solid #4a4843; }
-      #kontakt .card > div { padding: 1.4rem; }
-      section { padding: 3.5rem 0; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .slide.on div { animation: none; transform: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
     }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
   </style>
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <div class="wrap">
-    <a href="#" class="logo">B PROUD<small>COMPANY s.r.o. · PRAHA</small></a>
-    <ul class="nav-links">
-      <li><a href="#sluzby">Vzorník služeb</a></li>
+    <a href="#" class="logo">B<span>·</span>PROUD</a>
+    <ul class="menu">
+      <li><a href="#sluzby">Služby</a></li>
       <li><a href="#onas">O nás</a></li>
-      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#galerie">Realizace</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
-    <a class="pill" href="tel:+420777052539">+420 777 052 539</a>
+    <a class="tel" href="tel:+420777052539">+420 777 052 539</a>
   </div>
 </nav>
 
-<header class="wrap hero">
-  <div>
-    <h1>Poctivý<br>materiál.<span>Poctivá<br>práce.</span></h1>
-    <p class="lead">Rekonstrukce bytů, izolace vzduchotechniky a fasád, protipožární prostupy, ploty a zemní práce v Praze. Pro domácnosti i firmy – s důrazem na preciznost a spolehlivost.</p>
-    <a class="btn" href="#kontakt">Kontaktujte nás</a><a class="btn alt" href="#sluzby">Prohlédnout vzorník</a>
+<section id="hero" style="padding:0">
+  <div class="slide on" data-label="Stavby a konstrukce"><div style="background-image:url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=2000&q=72')"></div></div>
+  <div class="slide" data-label="Rekonstrukce interiérů"><div style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=72')"></div></div>
+  <div class="slide" data-label="Zemní práce"><div style="background-image:url('https://images.unsplash.com/photo-1580901368919-7738efb0f87e?auto=format&fit=crop&w=2000&q=72')"></div></div>
+  <div class="hero-txt">
+    <div class="wrap">
+      <div class="over">B Proud Company · Praha</div>
+      <h1>Stavíme poctivě<span>od základů</span></h1>
+      <div class="hero-row">
+        <p>Rekonstrukce, izolace, protipožární prostupy, ploty a zemní práce pro domácnosti i firmy. S důrazem na preciznost, spolehlivost a moderní přístupy.</p>
+        <a href="#kontakt" class="ghost">Domluvit schůzku <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
   </div>
-  <div class="fan" aria-hidden="true">
-    <div class="sw t-render"><div class="tag"><b>Izolace fasády</b><i>Baumit · Weber · Caparol</i></div></div>
-    <div class="sw t-foil"><div class="tag"><b>Izolace VZT</b><i>topení · chlazení</i></div></div>
-    <div class="sw t-tile"><div class="tag"><b>Rekonstrukce</b><i>jádra · kuchyně</i></div></div>
-  </div>
-</header>
+  <div class="counter" aria-hidden="true"><span id="cnum">01</span><span class="bar"><i id="cbar"></i></span><span>03</span><span class="lbl" id="clbl"></span></div>
+</section>
 
 <section id="sluzby">
   <div class="wrap">
-    <div class="head">
-      <div><div class="k">Co nabízíme · 9 služeb</div><h2>Vzorník služeb</h2></div>
-      <p>Pokrýváme celou škálu stavebních prací – od rekonstrukcí a izolací až po zemní práce a dopravu materiálu.</p>
+    <div class="intro">
+      <div><div class="over2">Služby</div><h2>Devět oborů,<br>jeden partner</h2></div>
+      <p>Pokrýváme celou škálu stavebních prací – od rekonstrukcí a izolací až po zemní práce a dopravu materiálu. Vyberte oblast.</p>
     </div>
-    <div class="book">
-      <article class="sample"><div class="face t-tile" data-code="REK"></div><div class="body"><h3>Rekonstrukce bytu</h3><p>Proměna bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.</p><dl class="spec"><dt>Pro</dt><dd>domácnosti</dd><dt>Rozsah</dt><dd>jádra, kuchyně</dd></dl></div></article>
-      <article class="sample"><div class="face t-foil" data-code="VZT"></div><div class="body"><h3>Izolace vzduchotechniky</h3><p>Kompletní izolační služby pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu ve vašem prostoru.</p><dl class="spec"><dt>Pro</dt><dd>firmy, správci budov</dd><dt>Rozsah</dt><dd>VZT, topení, chlazení</dd></dl></div></article>
-      <article class="sample"><div class="face t-render" data-code="FAS"></div><div class="body"><h3>Izolace fasády</h3><p>Kvalitní izolace fasády – optimální tepelná ochrana a estetický vzhled.</p><dl class="spec"><dt>Pro</dt><dd>domácnosti, SVJ, firmy</dd><dt>Materiály</dt><dd>Isocer, Caparol, Baumit, Weber</dd></dl></div></article>
-      <article class="sample"><div class="face t-fire" data-code="PBS"></div><div class="body"><h3>Protipožární prostupy</h3><p>Profesionální zajištění protipožárních prostupů a dodržení všech požárních předpisů v objektu.</p><dl class="spec"><dt>Pro</dt><dd>firmy, správci budov</dd><dt>Rozsah</dt><dd>dle požárních předpisů</dd></dl></div></article>
-      <article class="sample"><div class="face t-fan" data-code="CHL"></div><div class="body"><h3>Výměna chladících jednotek</h3><p>Výměna chladících jednotek a věží pro optimální fungování chladícího systému.</p><dl class="spec"><dt>Pro</dt><dd>firmy</dd><dt>Rozsah</dt><dd>jednotky, věže</dd></dl></div></article>
-      <article class="sample"><div class="face t-fence" data-code="PLO"></div><div class="body"><h3>Ploty a brány</h3><p>Stavba plotů včetně plotových polí pro bezpečné a esteticky příjemné okolí domova nebo pozemku.</p><dl class="spec"><dt>Pro</dt><dd>domácnosti, firmy</dd><dt>Rozsah</dt><dd>ploty, plotová pole, brány</dd></dl></div></article>
-      <article class="sample"><div class="face t-brick" data-code="BOU"></div><div class="body"><h3>Bourací práce</h3><p>Precizní a bezpečné odstranění stavebních prvků dle vašich požadavků a plánů.</p><dl class="spec"><dt>Pro</dt><dd>domácnosti, firmy</dd><dt>Rozsah</dt><dd>dle plánů</dd></dl></div></article>
-      <article class="sample"><div class="face t-soil" data-code="VYK"></div><div class="body"><h3>Výkopové práce</h3><p>Ruční výkopy pro detailní práce i bagrování a strojní výkopy pro větší projekty.</p><dl class="spec"><dt>Pro</dt><dd>domácnosti, firmy</dd><dt>Rozsah</dt><dd>ručně i strojně</dd></dl></div></article>
-      <article class="sample"><div class="face t-plate" data-code="DOP"></div><div class="body"><h3>Doprava s hydraulickou rukou</h3><p>Doprava a manipulace s náklady přímo na vaše staveniště nebo jiný objekt.</p><dl class="spec"><dt>Pro</dt><dd>firmy, stavby</dd><dt>Nosnost</dt><dd>do 12 tun</dd></dl></div></article>
+    <div class="panels" id="panels">
+      <div class="panel open" tabindex="0">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1400&q=70')"></div>
+        <div class="inner"><div class="idx">I.</div><h3>Interiéry</h3>
+          <ul>
+            <li><b>Rekonstrukce bytu</b><span>Proměna bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.</span></li>
+            <li><b>Bourací práce</b><span>Precizní a bezpečné odstranění stavebních prvků dle vašich požadavků a plánů.</span></li>
+          </ul></div>
+      </div>
+      <div class="panel" tabindex="0">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1400&q=70')"></div>
+        <div class="inner"><div class="idx">II.</div><h3>Technologie a izolace</h3>
+          <ul>
+            <li><b>Izolace vzduchotechniky</b><span>Izolace pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu.</span></li>
+            <li><b>Izolace fasády</b><span>Isocer, Caparol, Baumit a Weber – tepelná ochrana a estetický vzhled.</span></li>
+            <li><b>Protipožární prostupy</b><span>Zajištění prostupů a dodržení všech požárních předpisů.</span></li>
+            <li><b>Chladící jednotky</b><span>Výměna chladících jednotek a věží pro optimální chod systému.</span></li>
+          </ul></div>
+      </div>
+      <div class="panel" tabindex="0">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=70')"></div>
+        <div class="inner"><div class="idx">III.</div><h3>Exteriér a zemní práce</h3>
+          <ul>
+            <li><b>Ploty a brány</b><span>Stavba plotů včetně plotových polí pro bezpečné a příjemné okolí.</span></li>
+            <li><b>Výkopové práce</b><span>Ruční výkopy i bagrování a strojní výkopy pro větší projekty.</span></li>
+            <li><b>Hydraulická ruka</b><span>Doprava a manipulace s náklady do 12 tun přímo na staveniště.</span></li>
+          </ul></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="onas">
-  <div class="wrap">
-    <div class="head">
-      <div><div class="k">Naše filozofie</div><h2>Proč nás vybrat?</h2></div>
-      <p>Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov. Tato filozofie nás provází od vzniku společnosti.</p>
+  <div class="wrap about">
+    <div class="about-img reveal"><img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=75" alt="Technik na stavbě – ilustrační fotografie" loading="lazy"></div>
+    <div>
+      <div class="over2">O nás</div>
+      <h2>Jako by šlo<br>o náš domov</h2>
+      <p class="lead">Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov. Tato filozofie nás provází od vzniku společnosti.</p>
+      <div class="vals">
+        <div><b>Kvalita</b><span>Nekompromisní kvalita – každý detail hraje roli.</span></div>
+        <div><b>Spolehlivost</b><span>Dodržujeme termíny a závazky bez výjimky.</span></div>
+        <div><b>Inovace</b><span>Nejnovější trendy a technologie stavebnictví.</span></div>
+        <div><b>Osobní přístup</b><span>Individuální péče v každé fázi projektu.</span></div>
+      </div>
     </div>
-    <div class="vals">
-      <div><h3>Kvalita</h3><p>Nekompromisní kvalita ve všech pracích – každý detail hraje roli.</p></div>
-      <div><h3>Spolehlivost</h3><p>Dodržujeme dohodnuté termíny a závazky bez výjimky.</p></div>
-      <div><h3>Inovace</h3><p>Sledujeme nejnovější trendy a technologie stavebnictví.</p></div>
-    </div>
-    <ul class="why">
-      <li><strong>Zkušenosti</strong><span>Tým profesionálů s bohatými zkušenostmi v oboru stavebnictví.</span></li>
-      <li><strong>Flexibilita</strong><span>Přizpůsobíme se vašim potřebám, termínům i rozsahu projektu.</span></li>
-      <li><strong>Široká škála služeb</strong><span>Jeden partner pro veškeré vaše stavební potřeby na jednom místě.</span></li>
-      <li><strong>Osobní přístup</strong><span>Každý zákazník je pro nás jedinečný – individuální péče v každé fázi.</span></li>
-    </ul>
   </div>
 </section>
 
 <section id="galerie">
   <div class="wrap">
-    <div class="head">
-      <div><div class="k">Naše realizace</div><h2>Galerie</h2></div>
-      <p>Ukázky dokončených projektů. Fotografie budou doplněny po dodání podkladů.</p>
+    <div class="intro"><div><div class="over2">Realizace</div><h2>Ukázky prací</h2></div><p>Od interiérů přes fasády až po zemní práce.</p></div>
+    <div class="gal">
+      <figure><img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=1200&q=72" alt="" loading="lazy"><figcaption>Interiér</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=72" alt="" loading="lazy"><figcaption>Koupelna</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1597047084897-51e81819a499?auto=format&fit=crop&w=800&q=72" alt="" loading="lazy"><figcaption>Fasáda</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1587582423116-ec07293f0395?auto=format&fit=crop&w=800&q=72" alt="" loading="lazy"><figcaption>Konstrukce</figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1429497419816-9ca5cfb4571a?auto=format&fit=crop&w=1200&q=72" alt="" loading="lazy"><figcaption>Doprava a jeřáby</figcaption></figure>
     </div>
-    <div class="gal"><div>foto_01.jpg</div><div>foto_02.jpg</div><div>foto_03.jpg</div><div>foto_04.jpg</div><div>foto_05.jpg</div><div>foto_06.jpg</div></div>
+    <p class="note">Ilustrační fotografie – budou nahrazeny fotografiemi vlastních realizací.</p>
   </div>
 </section>
 
 <section id="kontakt">
   <div class="wrap">
-    <div class="card">
-      <div>
-        <div class="mono" style="font-size:.78rem;color:var(--char-2)">Spojte se s námi</div>
-        <a class="phone" href="tel:+420777052539">+420 777 052 539</a>
-        <a class="mail" href="mailto:bproud@email.cz">bproud@email.cz</a>
-      </div>
-      <div>
-        <dl>
-          <dt>Firma</dt><dd>B Proud Company s.r.o.</dd>
-          <dt>Adresa</dt><dd>Dlouhá 730/35<br>Praha 1 – Staré Město, 110 00</dd>
-          <dt>Jednatel</dt><dd>Ing. Haetchi Victor Nicolae</dd>
-          <dt>IČO</dt><dd>06897797</dd>
-          <dt>DIČ</dt><dd>CZ06897797</dd>
-        </dl>
-      </div>
+    <div class="over2">Kontakt</div>
+    <h2>Pojďme to postavit</h2>
+    <a class="phone" href="tel:+420777052539">777 052 539</a><br>
+    <a class="mail" href="mailto:bproud@email.cz">bproud@email.cz</a>
+    <div class="ct-row">
+      <div><small>Sídlo</small>Dlouhá 730/35<br>Praha 1 – Staré Město, 110 00</div>
+      <div><small>Jednatel</small>Ing. Haetchi Victor Nicolae</div>
+      <div><small>Firma</small>B Proud Company s.r.o.<br>IČO 06897797 · DIČ CZ06897797</div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <span>B PROUD COMPANY s.r.o. · IČO 06897797 · DIČ CZ06897797</span>
-    <span id="ftcopy"></span>
-  </div>
-</footer>
+<footer><div class="wrap"><span>B Proud Company s.r.o.</span><span id="ftcopy"></span></div></footer>
+
 <script>
-  document.getElementById('ftcopy').textContent = '© ' + new Date().getFullYear() + ' B Proud Company s.r.o. Všechna práva vyhrazena.';
+  // Slideshow
+  const slides = [...document.querySelectorAll('.slide')];
+  const bar = document.getElementById('cbar'), num = document.getElementById('cnum'), lbl = document.getElementById('clbl');
+  let cur = 0;
+  const show = i => {
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    num.textContent = String(i + 1).padStart(2, '0'); lbl.textContent = slides[i].dataset.label;
+    bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+  };
+  show(0);
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => show(cur = (cur + 1) % slides.length), 6000);
+
+  // Panels
+  const panels = document.querySelectorAll('.panel');
+  const open = p => panels.forEach(x => x.classList.toggle('open', x === p));
+  panels.forEach(p => {
+    p.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) open(p); });
+    p.addEventListener('click', () => open(p));
+    p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(p); } });
+    p.addEventListener('focus', () => open(p));
+  });
+
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 80), { passive: true });
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.getElementById('ftcopy').textContent = '© ' + new Date().getFullYear() + ' · Ilustrační foto: Unsplash';
 </script>
 </body>
 </html>
