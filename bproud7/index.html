@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B Proud Company s.r.o. | Stavební Práce Praha</title>
+  <meta name="description" content="B Proud Company s.r.o. – stavební práce pro domácnosti i firmy v Praze: rekonstrukce, izolace vzduchotechniky a fasád, protipožární prostupy, výkopy a doprava. IČO: 06897797.">
+  <link rel="icon" href="../bproud/favicon.ico" sizes="any">
+  <link rel="icon" href="../bproud/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Varianta 7: „Domácnost / Firma“ – přepínač publika B2C × B2B -->
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:    #f6f7f5;
+      --ink:   #0e1b2b;
+      --ink-2: #4d5b69;
+      --teal:  #0b7a75;
+      --mist:  #e2ebe9;
+      --line:  #d6dcdb;
+      --r:     14px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: 'Source Sans 3', sans-serif; font-size: 17px; line-height: 1.6; }
+    h1, h2, h3, .logo, .seg button, .btn { font-family: 'Schibsted Grotesk', sans-serif; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; border-radius: 6px; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 1.25rem; }
+
+    nav { position: sticky; top: 0; z-index: 20; background: rgba(246,247,245,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 68px; }
+    .logo { font-weight: 800; font-size: 1.3rem; text-decoration: none; letter-spacing: -0.01em; }
+    .logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; font-weight: 500; }
+    .nav-links a { text-decoration: none; color: var(--ink-2); }
+    .nav-links a:hover { color: var(--ink); }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: #fff; text-decoration: none; font-weight: 700; padding: 0.8rem 1.3rem; border-radius: 999px; transition: background .2s; }
+    .btn:hover { background: var(--teal); }
+    .btn.sm { padding: 0.55rem 1rem; font-size: 0.92rem; }
+    .btn.line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+    .btn.line:hover { background: var(--ink); color: #fff; }
+
+    /* HERO */
+    .hero { padding: 4rem 0 5rem; }
+    .seg { display: inline-flex; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 5px; margin-bottom: 2.2rem; box-shadow: 0 1px 2px rgba(14,27,43,0.05); }
+    .seg-label { font-size: 0.9rem; color: var(--ink-2); margin-right: 0.8rem; align-self: center; padding-left: 0.8rem; }
+    .seg button { border: 0; background: none; cursor: pointer; font-size: 0.98rem; font-weight: 700; color: var(--ink-2); padding: 0.6rem 1.3rem; border-radius: 999px; transition: background .25s, color .25s; }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3.5rem; align-items: start; }
+    h1 { font-size: clamp(2.5rem, 5.4vw, 4.4rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; }
+    h1 em { font-style: normal; color: var(--teal); }
+    .lead { font-size: 1.15rem; color: var(--ink-2); margin: 1.4rem 0 2rem; max-width: 520px; }
+    .ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    [data-aud-text] { transition: opacity .2s; }
+    .fading [data-aud-text] { opacity: 0; }
+
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 1.6rem; box-shadow: 0 20px 40px -24px rgba(14,27,43,0.25); }
+    .panel h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-2); font-weight: 700; margin-bottom: 1rem; }
+    .panel ul { list-style: none; }
+    .panel li { display: flex; gap: 0.9rem; align-items: flex-start; padding: 0.9rem 0; border-top: 1px solid var(--line); }
+    .panel li:first-child { border-top: 0; padding-top: 0; }
+    .panel .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--mist); color: var(--teal); display: grid; place-items: center; flex-shrink: 0; }
+    .panel .ico svg { width: 20px; height: 20px; }
+    .panel strong { display: block; font-weight: 600; }
+    .panel span { font-size: 0.92rem; color: var(--ink-2); }
+    .panel-foot { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-2); }
+    .panel-foot a { color: var(--teal); font-weight: 600; text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 5.5rem 0; }
+    .eyebrow { color: var(--teal); font-weight: 600; margin-bottom: 0.6rem; }
+    h2.title { font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 0.9rem; }
+    .sub { color: var(--ink-2); max-width: 580px; margin-bottom: 2.8rem; }
+
+    #sluzby { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .card { border: 1px solid var(--line); border-radius: var(--r); padding: 1.5rem; background: var(--bg); transition: opacity .3s, border-color .3s, background .3s, transform .3s; position: relative; }
+    .card h3 { font-size: 1.12rem; font-weight: 700; letter-spacing: -0.01em; margin: 0.9rem 0 0.4rem; }
+    .card p { color: var(--ink-2); font-size: 0.96rem; }
+    .card .ico { width: 44px; height: 44px; border-radius: 11px; background: var(--mist); color: var(--teal); display: grid; place-items: center; }
+    .card .ico svg { width: 22px; height: 22px; }
+    .tags { display: flex; gap: 0.4rem; margin-top: 1rem; flex-wrap: wrap; }
+    .tags span { font-size: 0.78rem; font-weight: 600; padding: 0.15rem 0.6rem; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ink-2); }
+    .card.hit { background: #fff; border-color: var(--teal); }
+    .card.miss { opacity: 0.55; }
+    .card.miss:hover { opacity: 1; }
+    .filter-note { font-size: 0.92rem; color: var(--ink-2); margin: -1.8rem 0 1.6rem; }
+    .filter-note button { background: none; border: 0; color: var(--teal); font: inherit; font-weight: 600; cursor: pointer; text-decoration: underline; }
+
+    /* PROCESS */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; counter-reset: s; }
+    .step { padding-top: 1.2rem; border-top: 3px solid var(--ink); }
+    .step::before { counter-increment: s; content: "Krok " counter(s); display: block; font-size: 0.85rem; font-weight: 600; color: var(--teal); margin-bottom: 0.4rem; }
+    .step h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .step p { color: var(--ink-2); font-size: 0.95rem; }
+
+    /* ABOUT */
+    #onas { background: var(--ink); color: #fff; }
+    #onas .eyebrow { color: #6fd1c9; }
+    #onas .sub { color: #aab6c2; }
+    .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem; }
+    .values div, .reasons li { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r); padding: 1.4rem; }
+    .values h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .values p, .reasons span { color: #aab6c2; font-size: 0.96rem; }
+    .reasons { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .reasons strong { display: block; font-family: 'Schibsted Grotesk', sans-serif; margin-bottom: 0.2rem; }
+
+    .gal { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-auto-rows: 200px; gap: 1rem; }
+    .gal div { border-radius: var(--r); background: var(--mist); border: 1.5px dashed #a9c2bf; display: grid; place-items: center; color: var(--ink-2); font-size: 0.9rem; }
+    .gal div:first-child { grid-row: span 2; }
+
+    /* CONTACT */
+    .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+    .ct-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+    .ct-row { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; padding: 1rem 1.4rem; border-top: 1px solid var(--line); }
+    .ct-row:first-child { border-top: 0; }
+    .ct-row dt { color: var(--ink-2); font-size: 0.92rem; }
+    .ct-row dd a { color: var(--teal); font-weight: 600; text-decoration: none; }
+    .ct-row dd a:hover { text-decoration: underline; }
+    .big-phone { font-family: 'Schibsted Grotesk', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; text-decoration: none; display: block; margin: 0.4rem 0 1.2rem; }
+    .big-phone:hover { color: var(--teal); }
+
+    footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--ink-2); font-size: 0.9rem; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    @media (max-width: 960px) {
+      .hero-grid, .contact { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .steps, .reasons { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 2.5rem; }
+      .seg { display: flex; flex-wrap: wrap; border-radius: 18px; }
+      .seg-label { width: 100%; padding: 0.3rem 0.8rem 0.4rem; }
+      .seg button { flex: 1; }
+      .grid, .steps, .values, .reasons { grid-template-columns: 1fr; }
+      .gal { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; }
+      .gal div:first-child { grid-column: span 2; grid-row: auto; }
+      .ct-row { grid-template-columns: 1fr; gap: 0; }
+      section { padding: 4rem 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">B <span>Proud</span></a>
+    <ul class="nav-links">
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#postup">Postup</a></li>
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a class="btn sm" href="tel:+420777052539">Zavolat</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="seg" role="group" aria-label="Pro koho hledáte služby">
+      <span class="seg-label">Hledám služby pro:</span>
+      <button type="button" data-aud="b2c" aria-pressed="true">Domácnost</button>
+      <button type="button" data-aud="b2b" aria-pressed="false">Firmu / správu budov</button>
+    </div>
+    <div class="hero-grid" id="heroGrid">
+      <div>
+        <h1 data-aud-text="h1">Rekonstrukce a stavební práce <em>pro váš domov</em></h1>
+        <p class="lead" data-aud-text="lead">Proměníme bytové jádro nebo kuchyň, zateplíme fasádu, postavíme plot. Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov.</p>
+        <div class="ctas">
+          <a class="btn" href="#kontakt" data-aud-text="cta">Domluvit prohlídku</a>
+          <a class="btn line" href="#sluzby">Všechny služby</a>
+        </div>
+      </div>
+      <aside class="panel" aria-live="polite">
+        <h2 data-aud-text="panelTitle">Nejčastěji pro domácnosti</h2>
+        <ul id="featured"></ul>
+        <div class="panel-foot">Jeden partner pro veškeré stavební potřeby – <a href="#sluzby">zobrazit všech 9 služeb</a></div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<section id="sluzby">
+  <div class="wrap">
+    <div class="eyebrow">Co nabízíme</div>
+    <h2 class="title">Naše služby</h2>
+    <p class="sub">Pokrýváme celou škálu stavebních prací – od rekonstrukcí a izolací až po zemní práce a dopravu materiálu.</p>
+    <p class="filter-note" id="filterNote"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="postup">
+  <div class="wrap">
+    <div class="eyebrow">Jak spolupráce probíhá</div>
+    <h2 class="title">Od poptávky po předání</h2>
+    <p class="sub">Přizpůsobíme se vašim potřebám, termínům i rozsahu projektu.</p>
+    <div class="steps">
+      <div class="step"><h3>Poptávka</h3><p>Zavoláte nebo napíšete, co potřebujete.</p></div>
+      <div class="step"><h3>Prohlídka a nabídka</h3><p>Podíváme se na místo a připravíme cenovou nabídku.</p></div>
+      <div class="step"><h3>Realizace</h3><p>Pracujeme v dohodnutém termínu a držíme vás v obraze.</p></div>
+      <div class="step"><h3>Předání</h3><p>Hotové dílo předáme uklizené a zkontrolované.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="onas">
+  <div class="wrap">
+    <div class="eyebrow">Naše filozofie</div>
+    <h2 class="title">Proč nás vybrat?</h2>
+    <p class="sub">Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov. Tato filozofie nás provází od vzniku společnosti.</p>
+    <div class="values">
+      <div><h3>Kvalita</h3><p>Nekompromisní kvalita ve všech pracích – každý detail hraje roli.</p></div>
+      <div><h3>Spolehlivost</h3><p>Dodržujeme dohodnuté termíny a závazky bez výjimky.</p></div>
+      <div><h3>Inovace</h3><p>Sledujeme nejnovější trendy a technologie stavebnictví.</p></div>
+    </div>
+    <ul class="reasons">
+      <li><strong>Zkušenosti</strong><span>Tým profesionálů s bohatými zkušenostmi v oboru stavebnictví.</span></li>
+      <li><strong>Flexibilita</strong><span>Přizpůsobíme se vašim potřebám, termínům i rozsahu projektu.</span></li>
+      <li><strong>Široká škála služeb</strong><span>Jeden partner pro veškeré vaše stavební potřeby na jednom místě.</span></li>
+      <li><strong>Osobní přístup</strong><span>Každý zákazník je pro nás jedinečný – individuální péče v každé fázi.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="galerie">
+  <div class="wrap">
+    <div class="eyebrow">Naše realizace</div>
+    <h2 class="title">Galerie</h2>
+    <p class="sub">Ukázky dokončených projektů. Fotografie budou doplněny po dodání podkladů.</p>
+    <div class="gal"><div>Fotografie realizace</div><div>Foto</div><div>Foto</div><div>Foto</div><div>Foto</div></div>
+  </div>
+</section>
+
+<section id="kontakt" style="padding-top:0">
+  <div class="wrap contact">
+    <div>
+      <div class="eyebrow">Spojte se s námi</div>
+      <h2 class="title">Kontakt</h2>
+      <a class="big-phone" href="tel:+420777052539">+420 777 052 539</a>
+      <p class="sub" style="margin-bottom:0">Pro domácnosti i firmy v Praze a okolí. Napište nám na <a href="mailto:bproud@email.cz" style="color:var(--teal);font-weight:600">bproud@email.cz</a>.</p>
+    </div>
+    <dl class="ct-card">
+      <div class="ct-row"><dt>Firma</dt><dd>B Proud Company s.r.o.</dd></div>
+      <div class="ct-row"><dt>Telefon</dt><dd><a href="tel:+420777052539">+420 777 052 539</a></dd></div>
+      <div class="ct-row"><dt>E-mail</dt><dd><a href="mailto:bproud@email.cz">bproud@email.cz</a></dd></div>
+      <div class="ct-row"><dt>Adresa</dt><dd>Dlouhá 730/35, Praha 1 – Staré Město, 110 00</dd></div>
+      <div class="ct-row"><dt>Jednatel</dt><dd>Ing. Haetchi Victor Nicolae</dd></div>
+      <div class="ct-row"><dt>IČO / DIČ</dt><dd>06897797 / CZ06897797</dd></div>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>B Proud Company s.r.o. · IČO: 06897797 · DIČ: CZ06897797</span>
+    <span id="ftcopy"></span>
+  </div>
+</footer>
+
+<script>
+  const ICONS = {
+    home:  '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    fence: '<path d="M4 21V6l2-2 2 2v15M11 21V6l2-2 2 2v15M18 21V6l2-2 2 2v15M2 10h22M2 17h22"/>',
+    air:   '<path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>',
+    layers:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+    shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+    fan:   '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5"/><path d="M12 10.5c0-3 1-5.5 3-6M13.4 12.6c2.6 1.4 4.4 3.5 4.2 5.8M10.6 12.6c-2.6 1.4-5.3 1.2-6.7-.6"/>',
+    tool:  '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+    dig:   '<path d="M2 20h20M5 20l3-8h8l3 8"/><path d="M12 12V4l5 3"/>',
+    truck: '<rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>'
+  };
+  const SERVICES = [
+    { n: 'Rekonstrukce bytu', i: 'home', d: 'Proměna bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.', a: ['b2c'] },
+    { n: 'Izolace vzduchotechniky', i: 'air', d: 'Kompletní izolační služby pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu ve vašem prostoru.', a: ['b2b'] },
+    { n: 'Izolace fasády', i: 'layers', d: 'Materiály Isocer, Caparol, Baumit a Weber – optimální tepelná ochrana a estetický vzhled.', a: ['b2c', 'b2b'] },
+    { n: 'Protipožární prostupy', i: 'shield', d: 'Profesionální zajištění protipožárních prostupů a dodržení všech požárních předpisů v objektu.', a: ['b2b'] },
+    { n: 'Výměna chladících jednotek', i: 'fan', d: 'Výměna chladících jednotek a věží pro optimální fungování chladícího systému.', a: ['b2b'] },
+    { n: 'Ploty a brány', i: 'fence', d: 'Stavba plotů včetně plotových polí pro bezpečné a esteticky příjemné okolí domova nebo pozemku.', a: ['b2c', 'b2b'] },
+    { n: 'Bourací práce', i: 'tool', d: 'Precizní a bezpečné odstranění stavebních prvků dle vašich požadavků a plánů.', a: ['b2c', 'b2b'] },
+    { n: 'Výkopové práce', i: 'dig', d: 'Ruční výkopy pro detailní práce i bagrování a strojní výkopy pro větší projekty.', a: ['b2c', 'b2b'] },
+    { n: 'Doprava s hydraulickou rukou', i: 'truck', d: 'Doprava a manipulace s náklady do 12 tun přímo na staveniště nebo jiný objekt.', a: ['b2b'] }
+  ];
+  const FEATURED = { b2c: [0, 2, 5, 7], b2b: [1, 3, 4, 8] };
+  const TEXT = {
+    b2c: {
+      h1: 'Rekonstrukce a stavební práce <em>pro váš domov</em>',
+      lead: 'Proměníme bytové jádro nebo kuchyň, zateplíme fasádu, postavíme plot. Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov.',
+      cta: 'Domluvit prohlídku', panelTitle: 'Nejčastěji pro domácnosti', note: 'Zvýrazněné služby využívají nejčastěji domácnosti.'
+    },
+    b2b: {
+      h1: 'Izolace, technologie a stavby <em>pro firmy a správce budov</em>',
+      lead: 'Izolace vzduchotechniky, topení a chlazení, protipožární prostupy, výměna chladících jednotek a doprava do 12 tun. Dodržujeme termíny, závazky i předpisy.',
+      cta: 'Poptat zakázku', panelTitle: 'Nejčastěji pro firmy', note: 'Zvýrazněné služby využívají nejčastěji firmy a správci budov.'
+    }
+  };
+  const svg = k => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + ICONS[k] + '</svg>';
+  const label = { b2c: 'Domácnosti', b2b: 'Firmy' };
+
+  document.getElementById('grid').innerHTML = SERVICES.map(s =>
+    '<article class="card" data-a="' + s.a.join(' ') + '"><div class="ico">' + svg(s.i) + '</div><h3>' + s.n + '</h3><p>' + s.d + '</p><div class="tags">' + s.a.map(x => '<span>' + label[x] + '</span>').join('') + '</div></article>'
+  ).join('');
+
+  let filtered = true;
+  function apply(aud, animate) {
+    document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.aud === aud));
+    const t = TEXT[aud];
+    const swap = () => {
+      document.querySelectorAll('[data-aud-text]').forEach(el => { el.innerHTML = t[el.dataset.audText]; });
+      document.getElementById('featured').innerHTML = FEATURED[aud].map(i =>
+        '<li><div class="ico">' + svg(SERVICES[i].i) + '</div><div><strong>' + SERVICES[i].n + '</strong><span>' + SERVICES[i].d.split(' – ')[0] + '</span></div></li>').join('');
+      document.querySelectorAll('.card').forEach(c => {
+        const hit = c.dataset.a.split(' ').includes(aud);
+        c.classList.toggle('hit', filtered && hit);
+        c.classList.toggle('miss', filtered && !hit);
+      });
+      document.getElementById('filterNote').innerHTML = filtered
+        ? t.note + ' <button type="button" id="showAll">Zobrazit vše stejně</button>'
+        : '';
+      const b = document.getElementById('showAll');
+      if (b) b.onclick = () => { filtered = false; apply(aud, false); };
+      document.getElementById('heroGrid').classList.remove('fading');
+    };
+    if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.getElementById('heroGrid').classList.add('fading');
+      setTimeout(swap, 200);
+    } else swap();
+    try { localStorage.setItem('bproud-aud', aud); } catch (e) {}
+  }
+  document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { filtered = true; apply(b.dataset.aud, true); }));
+  let start = 'b2c';
+  try { if (localStorage.getItem('bproud-aud') === 'b2b') start = 'b2b'; } catch (e) {}
+  if (/[?&]pro=firmy/.test(location.search)) start = 'b2b';
+  apply(start, false);
+
+  document.getElementById('ftcopy').textContent = '© ' + new Date().getFullYear() + ' B Proud Company s.r.o. Všechna práva vyhrazena.';
+</script>
+</body>
+</html>

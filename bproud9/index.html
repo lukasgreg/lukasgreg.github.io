@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B Proud Company s.r.o. | Stavební Práce Praha</title>
+  <meta name="description" content="B Proud Company s.r.o. – od střechy po základy: chladící jednotky, izolace vzduchotechniky, protipožární prostupy, fasády, rekonstrukce, ploty, výkopy a doprava v Praze. IČO: 06897797.">
+  <link rel="icon" href="../bproud/favicon.ico" sizes="any">
+  <link rel="icon" href="../bproud/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800&family=Karla:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Varianta 9: „Řez stavbou“ – scroll od střechy po základy s výškovou kótou -->
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --sky:   #3a4a5c;
+      --slab:  #2a3139;
+      --wall:  #313a44;
+      --soil:  #3b2c20;
+      --soil-2:#2a1f17;
+      --text:  #eceae4;
+      --text-2:#a9b0b8;
+      --vis:   #ff6a13;
+      --rail:  84px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--slab); color: var(--text); font-family: 'Karla', sans-serif; font-size: 17px; line-height: 1.6; }
+    .disp { font-family: 'Saira Condensed', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--vis); outline-offset: 3px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 30; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.5rem 1rem calc(var(--rail) + 1.5rem); background: linear-gradient(rgba(30,37,45,0.9), rgba(30,37,45,0)); }
+    .logo { font-family: 'Saira Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 0.06em; text-decoration: none; }
+    .logo span { color: var(--vis); }
+    .call { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: var(--vis); color: #1a1a1a; font-weight: 600; text-decoration: none; padding: 0.5rem 0.9rem; }
+    .call:hover { background: var(--text); }
+
+    /* ELEVATION RAIL */
+    .rail { position: fixed; left: 0; top: 0; bottom: 0; width: var(--rail); z-index: 25; border-right: 1px solid rgba(255,255,255,0.12); background: rgba(24,29,35,0.65); backdrop-filter: blur(6px); }
+    .ticks { position: absolute; top: 90px; bottom: 40px; left: 0; right: 0; background-image: repeating-linear-gradient(to bottom, rgba(255,255,255,0.25) 0 1px, transparent 1px 12px); background-size: 14px 100%; background-repeat: no-repeat; background-position: right top; }
+    .ticks a { position: absolute; left: 0.6rem; font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; color: var(--text-2); text-decoration: none; transform: translateY(-50%); line-height: 1.1; }
+    .ticks a:hover { color: var(--text); }
+    .marker { position: absolute; left: 0; right: 0; height: 0; top: 90px; transition: top .15s linear; }
+    .marker::before { content: ''; position: absolute; right: 0; top: -1px; width: 30px; border-top: 2px solid var(--vis); }
+    .marker::after { content: ''; position: absolute; right: -7px; top: -6px; border: 6px solid transparent; border-left: 8px solid var(--vis); transform: scaleX(-1); }
+    .readout { position: absolute; left: 0; right: 0; bottom: 0.7rem; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--vis); }
+
+    main { margin-left: var(--rail); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(#1e252d 0%, var(--sky) 100%); position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: var(--slab); border-top: 3px solid var(--text-2); }
+    .hero .wrap { padding-top: 6rem; padding-bottom: 6rem; }
+    .over { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--vis); margin-bottom: 1rem; }
+    h1 { font-family: 'Saira Condensed', sans-serif; font-weight: 800; font-size: clamp(3.4rem, 9vw, 8rem); line-height: 0.88; text-transform: uppercase; letter-spacing: -0.01em; }
+    h1 .v { color: var(--vis); }
+    .lead { max-width: 520px; color: var(--text-2); margin: 1.6rem 0 2.2rem; font-size: 1.1rem; }
+    .down { display: inline-flex; gap: 0.8rem; align-items: center; font-family: 'Saira Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border: 2px solid var(--text); padding: 0.8rem 1.3rem; }
+    .down:hover { background: var(--text); color: var(--slab); }
+    .down svg { width: 18px; height: 18px; animation: bob 1.8s ease-in-out infinite; }
+    @keyframes bob { 50% { transform: translateY(4px); } }
+
+    /* LEVELS */
+    .level { position: relative; padding: 5.5rem 0 5rem; border-bottom: 10px solid #20262d; }
+    .level::before { content: ''; position: absolute; left: 0; right: 0; top: 0; border-top: 1px dashed rgba(255,255,255,0.25); }
+    .lvl-head { display: flex; align-items: baseline; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 2.2rem; }
+    .elev { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--vis); font-size: 1rem; border: 1.5px solid var(--vis); padding: 0.1rem 0.5rem; }
+    .lvl-head h2 { font-family: 'Saira Condensed', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); text-transform: uppercase; line-height: 1; }
+    .lvl-head p { flex-basis: 100%; color: var(--text-2); max-width: 560px; }
+    .svc { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .svc article { background: rgba(255,255,255,0.045); border-left: 3px solid var(--vis); padding: 1.4rem 1.5rem; }
+    .svc h3 { font-family: 'Saira Condensed', sans-serif; font-weight: 700; font-size: 1.5rem; text-transform: uppercase; line-height: 1.1; margin-bottom: 0.4rem; }
+    .svc p { color: var(--text-2); }
+    .svc .who { margin-top: 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text); opacity: 0.7; }
+
+    #strecha { background: var(--sky); }
+    #sachty { background: #333d49; }
+    #fasada { background: var(--wall); background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.4px); background-size: 7px 7px; }
+    #byt { background: #2c333b; }
+    #teren { background: linear-gradient(#2c333b 0 70%, #4a5a37 70% 71%, var(--soil) 71%); border-bottom: 0; }
+    #podlozi { background: var(--soil); background-image: radial-gradient(rgba(0,0,0,0.25) 1.5px, transparent 2px), radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.5px); background-size: 14px 12px, 9px 9px; }
+    #teren .svc article, #podlozi .svc article { background: rgba(0,0,0,0.25); }
+
+    /* ABOUT + CONTACT in the foundations */
+    #onas { background: var(--soil-2); padding: 5.5rem 0; }
+    #onas h2, #kontakt h2 { font-family: 'Saira Condensed', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.6rem); text-transform: uppercase; line-height: 1; margin-bottom: 0.8rem; }
+    .intro { color: var(--text-2); max-width: 580px; margin-bottom: 2.4rem; }
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .pillars div { border-top: 3px solid var(--vis); padding-top: 1rem; }
+    .pillars h3 { font-family: 'Saira Condensed', sans-serif; font-weight: 700; font-size: 1.6rem; text-transform: uppercase; }
+    .pillars p, .reasons span { color: var(--text-2); }
+    .reasons { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 2rem; margin-top: 2.5rem; }
+    .reasons strong { display: block; }
+
+    .gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 3rem; }
+    .gal div { aspect-ratio: 4/3; border: 1.5px dashed rgba(255,255,255,0.3); display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-2); }
+
+    #kontakt { background: #17120e; padding: 5.5rem 0 4rem; }
+    .ct { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; }
+    .phone { display: block; font-family: 'Saira Condensed', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.8rem); color: var(--vis); text-decoration: none; line-height: 1; margin: 0.8rem 0; }
+    .phone:hover { color: var(--text); }
+    .ct dl { display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.2rem; }
+    .ct dt { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-2); padding-top: 0.25rem; }
+    .ct dd a { color: var(--vis); }
+    footer { background: #17120e; border-top: 1px solid rgba(255,255,255,0.1); padding: 1.4rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text-2); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      :root { --rail: 0px; }
+      .rail { display: none; }
+      nav { padding-left: 1rem; padding-right: 1rem; }
+      .wrap { padding: 0 1.1rem; }
+      .svc, .pillars, .reasons, .ct { grid-template-columns: 1fr; }
+      .gal { grid-template-columns: 1fr 1fr; }
+      .level { padding: 4rem 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .down svg { animation: none; } .marker { transition: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">B <span>PROUD</span></a>
+  <a class="call" href="tel:+420777052539">+420 777 052 539</a>
+</nav>
+
+<aside class="rail" aria-label="Výškové úrovně">
+  <div class="ticks" id="ticks"></div>
+  <div class="marker" id="marker"></div>
+  <div class="readout" id="readout">+15,00</div>
+</aside>
+
+<main>
+  <header class="hero">
+    <div class="wrap">
+      <div class="over">B PROUD COMPANY s.r.o. · STAVEBNÍ PRÁCE PRAHA</div>
+      <h1>Od střechy<br><span class="v">po základy.</span></h1>
+      <p class="lead">Chladící jednotky na střeše, izolace vzduchotechniky, protipožární prostupy, fasády, rekonstrukce bytů, ploty i výkopy. Pro domácnosti i firmy – každé patro, jeden partner.</p>
+      <a class="down" href="#strecha">Projít budovu shora dolů
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="level" id="strecha" data-elev="15.00">
+    <div class="wrap">
+      <div class="lvl-head"><span class="elev">+15,00</span><h2>Střecha a technologie</h2><p>Chlazení a vzduchotechnika drží budovu v provozu. Postaráme se o výměnu i izolaci.</p></div>
+      <div class="svc">
+        <article><h3>Výměna chladících jednotek</h3><p>Profesionální výměna chladících jednotek a věží pro optimální fungování chladícího systému.</p><div class="who">firmy · správci budov</div></article>
+        <article><h3>Izolace vzduchotechniky</h3><p>Kompletní izolační služby pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu ve vašem prostoru.</p><div class="who">firmy · správci budov</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="level" id="sachty" data-elev="10.50">
+    <div class="wrap">
+      <div class="lvl-head"><span class="elev">+10,50</span><h2>Instalační šachty a stropy</h2><p>Každé potrubí, které prochází stropem nebo stěnou, musí splňovat požární předpisy.</p></div>
+      <div class="svc">
+        <article><h3>Protipožární prostupy</h3><p>Profesionální zajištění protipožárních prostupů a dodržení všech požárních předpisů ve vašem objektu.</p><div class="who">firmy · správci budov · SVJ</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="level" id="fasada" data-elev="6.00">
+    <div class="wrap">
+      <div class="lvl-head"><span class="elev">+6,00</span><h2>Fasáda</h2><p>Tepelná ochrana a vzhled domu v jednom.</p></div>
+      <div class="svc">
+        <article><h3>Izolace fasády</h3><p>Kvalitní izolace fasády materiály Isocer, Caparol, Baumit a Weber – optimální tepelná ochrana a estetický vzhled.</p><div class="who">domácnosti · SVJ · firmy</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="level" id="byt" data-elev="3.00">
+    <div class="wrap">
+      <div class="lvl-head"><span class="elev">+3,00</span><h2>Byt</h2><p>Bytová jádra, kuchyně a vše, co je potřeba nejdřív vybourat.</p></div>
+      <div class="svc">
+        <article><h3>Rekonstrukce bytu</h3><p>Specializujeme se na proměnu bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.</p><div class="who">domácnosti</div></article>
+        <article><h3>Bourací práce</h3><p>Precizní a bezpečné bourací práce – efektivní odstranění stavebních prvků dle vašich požadavků a plánů.</p><div class="who">domácnosti · firmy</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="level" id="teren" data-elev="0.00">
+    <div class="wrap">
+      <div class="lvl-head"><span class="elev">±0,00</span><h2>Pozemek a příjezd</h2><p>Hranice pozemku a všechno, co je potřeba na stavbu dovézt.</p></div>
+      <div class="svc">
+        <article><h3>Ploty a brány</h3><p>Stavba plotů včetně plotových polí pro bezpečné a esteticky příjemné okolí vašeho domova nebo pozemku.</p><div class="who">domácnosti · firmy</div></article>
+        <article><h3>Doprava s hydraulickou rukou</h3><p>Profesionální doprava a manipulace s náklady do 12 tun přímo na vaše staveniště nebo jiný objekt.</p><div class="who">firmy · stavby</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="level" id="podlozi" data-elev="-2.50">
+    <div class="wrap">
+      <div class="lvl-head"><span class="elev">−2,50</span><h2>Podloží</h2><p>Každá stavba začíná pod zemí.</p></div>
+      <div class="svc">
+        <article><h3>Výkopové práce</h3><p>Ruční výkopy pro detailní práce a preciznost, stejně jako bagrování a strojní výkopy pro větší projekty.</p><div class="who">domácnosti · firmy</div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="onas" data-elev="-4.00">
+    <div class="wrap">
+      <div class="over">ZÁKLADY FIRMY</div>
+      <h2>Proč nás vybrat?</h2>
+      <p class="intro">Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov. Tato filozofie nás provází od vzniku společnosti.</p>
+      <div class="pillars">
+        <div><h3>Kvalita</h3><p>Nekompromisní kvalita ve všech pracích – každý detail hraje roli.</p></div>
+        <div><h3>Spolehlivost</h3><p>Dodržujeme dohodnuté termíny a závazky bez výjimky.</p></div>
+        <div><h3>Inovace</h3><p>Sledujeme nejnovější trendy a technologie stavebnictví.</p></div>
+      </div>
+      <ul class="reasons">
+        <li><strong>Zkušenosti</strong><span>Tým profesionálů s bohatými zkušenostmi v oboru stavebnictví.</span></li>
+        <li><strong>Flexibilita</strong><span>Přizpůsobíme se vašim potřebám, termínům i rozsahu projektu.</span></li>
+        <li><strong>Široká škála služeb</strong><span>Jeden partner pro veškeré vaše stavební potřeby na jednom místě.</span></li>
+        <li><strong>Osobní přístup</strong><span>Každý zákazník je pro nás jedinečný – individuální péče v každé fázi.</span></li>
+      </ul>
+      <div class="gal" id="galerie" aria-label="Galerie – fotografie budou doplněny"><div>realizace 01</div><div>realizace 02</div><div>realizace 03</div></div>
+    </div>
+  </section>
+
+  <section id="kontakt" data-elev="-5.00">
+    <div class="wrap ct">
+      <div>
+        <div class="over">SPOJTE SE S NÁMI</div>
+        <h2>Kde začít? Zavolejte.</h2>
+        <a class="phone" href="tel:+420777052539">+420 777 052 539</a>
+        <p style="color:var(--text-2)">nebo napište na <a href="mailto:bproud@email.cz" style="color:var(--vis)">bproud@email.cz</a></p>
+      </div>
+      <dl>
+        <dt>Firma</dt><dd>B Proud Company s.r.o.</dd>
+        <dt>Adresa</dt><dd>Dlouhá 730/35, Praha 1 – Staré Město, 110 00</dd>
+        <dt>Jednatel</dt><dd>Ing. Haetchi Victor Nicolae</dd>
+        <dt>IČO</dt><dd>06897797</dd>
+        <dt>DIČ</dt><dd>CZ06897797</dd>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap"><span>B PROUD COMPANY s.r.o.</span><span id="ftcopy"></span></div>
+  </footer>
+</main>
+
+<script>
+  // Elevation rail: ticks per level + live readout following scroll
+  const levels = [...document.querySelectorAll('[data-elev]')];
+  const ticks = document.getElementById('ticks');
+  const marker = document.getElementById('marker');
+  const readout = document.getElementById('readout');
+  const names = { strecha: 'Střecha', sachty: 'Šachty', fasada: 'Fasáda', byt: 'Byt', teren: 'Terén', podlozi: 'Podloží', onas: 'O nás', kontakt: 'Kontakt' };
+  const fmt = v => (v > 0.004 ? '+' : v < -0.004 ? '−' : '±') + Math.abs(v).toFixed(2).replace('.', ',');
+  const docH = () => document.documentElement.scrollHeight - innerHeight;
+
+  // Levels are spaced evenly on the rail (slot 0 = hero, then one slot per level)
+  const slots = levels.length + 1;
+  const slotPos = i => (i + 0.5) / slots;
+  function layoutTicks() {
+    ticks.querySelectorAll('a').forEach(a => a.remove());
+    levels.forEach((s, i) => {
+      const a = document.createElement('a');
+      a.href = '#' + s.id;
+      a.innerHTML = fmt(+s.dataset.elev) + '<br>' + names[s.id];
+      a.style.top = (slotPos(i + 1) * 100) + '%';
+      ticks.appendChild(a);
+    });
+  }
+  function update() {
+    // position within the level sequence, measured at 30 % of the viewport
+    const y = scrollY + innerHeight * 0.3;
+    let slot = 0, v = 15 + 3 * (1 - Math.min(1, y / levels[0].offsetTop));
+    for (let i = 0; i < levels.length; i++) {
+      const a = levels[i], b = levels[i + 1];
+      const end = b ? b.offsetTop : a.offsetTop + a.offsetHeight;
+      if (y >= a.offsetTop) {
+        const t = Math.min(1, (y - a.offsetTop) / (end - a.offsetTop));
+        const ea = +a.dataset.elev, eb = b ? +b.dataset.elev : ea;
+        slot = i + 1 + (b ? t : 0);
+        v = ea + (eb - ea) * t;
+      }
+    }
+    if (y < levels[0].offsetTop) slot = y / levels[0].offsetTop;
+    if (scrollY >= docH() - 2) { slot = levels.length; v = +levels[levels.length - 1].dataset.elev; }
+    marker.style.top = (90 + slotPos(Math.min(slot, levels.length)) * ticks.offsetHeight) + 'px';
+    readout.textContent = fmt(v) + ' m';
+  }
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', () => { layoutTicks(); update(); });
+  addEventListener('load', () => { layoutTicks(); update(); });
+  layoutTicks(); update();
+
+  document.getElementById('ftcopy').textContent = '© ' + new Date().getFullYear() + ' B Proud Company s.r.o. Všechna práva vyhrazena.';
+</script>
+</body>
+</html>
