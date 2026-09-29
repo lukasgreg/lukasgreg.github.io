@@ -1,0 +1,15 @@
+{
+  "name": "B Proud Company s.r.o.",
+  "short_name": "B Proud",
+  "description": "Stavební práce Praha – rekonstrukce, izolace, protipožární prostupy, zemní práce a doprava.",
+  "lang": "cs",
+  "icons": [
+    { "src": "img/icons/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "img/icons/icon.svg", "type": "image/svg+xml", "sizes": "any" }
+  ],
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f1113",
+  "theme_color": "#0f1113"
+}

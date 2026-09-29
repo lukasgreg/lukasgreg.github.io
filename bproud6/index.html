@@ -3,219 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B Proud Company s.r.o. | Stavební Práce Praha</title>
-  <meta name="description" content="B Proud Company s.r.o. – profesionální stavební práce, rekonstrukce, izolace, ploty a doprava v Praze. IČO: 06897797.">
-  <link rel="icon" href="../bproud/favicon.ico" sizes="any">
-  <link rel="icon" href="../bproud/icon.svg" type="image/svg+xml">
+  <title>B Proud Company s.r.o. | Stavební práce, rekonstrukce a izolace Praha</title>
+  <meta name="description" content="B Proud Company s.r.o. – stavební práce v Praze: rekonstrukce bytů, izolace vzduchotechniky a fasád, protipožární prostupy, ploty, bourací a výkopové práce, doprava s hydraulickou rukou. Tel. +420 777 052 539.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="author" content="B Proud Company s.r.o.">
+  <meta name="theme-color" content="#0f1113">
+  <link rel="canonical" href="https://bproud.cz/">
+
+  <!-- Geo (místní SEO) -->
+  <meta name="geo.region" content="CZ-10">
+  <meta name="geo.placename" content="Praha">
+
+  <!-- Open Graph / sociální sítě -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:site_name" content="B Proud Company s.r.o.">
+  <meta property="og:title" content="B Proud Company s.r.o. | Stavební práce Praha">
+  <meta property="og:description" content="Rekonstrukce bytů, izolace vzduchotechniky a fasád, protipožární prostupy, zemní práce i doprava materiálu. Pro domácnosti i firmy.">
+  <meta property="og:url" content="https://bproud.cz/">
+  <meta property="og:image" content="https://bproud.cz/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Stavba – B Proud Company s.r.o.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="B Proud Company s.r.o. | Stavební práce Praha">
+  <meta name="twitter:description" content="Rekonstrukce bytů, izolace, protipožární prostupy, zemní práce i doprava materiálu v Praze.">
+  <meta name="twitter:image" content="https://bproud.cz/img/og-image.jpg">
+
+  <!-- Ikony a manifest -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="img/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/icons/icon-192.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Soubor pro AI asistenty (llms.txt) -->
+  <link rel="alternate" type="text/markdown" href="llms.txt" title="LLM summary">
+
+  <!-- Výkon: hero obrázek (LCP) a písma -->
+  <link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-1000.webp 1000w, img/hero.webp 1920w" imagesizes="100vw" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- Varianta 6: Fotografický hero – DNA původního webu + velké fotografie -->
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg: #0f1113; --bg-2: #16191c; --bg-3: #1d2125;
-      --accent: #f08a1c; --accent-dim: rgba(240,138,28,0.12);
-      --text: #f1f1f1; --text-2: #a3a8ad; --text-3: #5d6368;
-      --sep: rgba(255,255,255,0.08);
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
-    .osw { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 
-    /* NAV */
-    #nav { position: fixed; inset: 0 0 auto; z-index: 900; transition: background .35s, box-shadow .35s; }
-    #nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 84px; transition: height .35s; }
-    #nav.solid { background: rgba(15,17,19,0.95); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--sep); }
-    #nav.solid .wrap { height: 68px; }
-    .logo { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.55rem; letter-spacing: .16em; text-decoration: none; }
-    .logo em { color: var(--accent); font-style: normal; }
-    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
-    .nav-links a { font-family: 'Oswald', sans-serif; font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; color: rgba(255,255,255,.8); transition: color .2s; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta { font-family: 'Oswald', sans-serif; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; background: var(--accent); color: #111; padding: .7rem 1.3rem; font-weight: 600; }
-    .nav-cta:hover { background: #fff; }
-    .burger { display: none; background: none; border: 0; cursor: pointer; padding: 6px; flex-direction: column; gap: 5px; }
-    .burger span { width: 26px; height: 2px; background: #fff; display: block; transition: .3s; }
-    .burger.x span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .burger.x span:nth-child(2) { opacity: 0; }
-    .burger.x span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    #overlay { display: none; position: fixed; inset: 0; z-index: 800; background: rgba(15,17,19,.98); flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; }
-    #overlay.open { display: flex; }
-    #overlay a { font-family: 'Oswald', sans-serif; font-size: 2.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; text-decoration: none; }
-
-    /* HERO */
-    #hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; }
-    .hero-img { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2000&q=75') center/cover; transform: scale(1.08); animation: zoom 14s ease-out forwards; }
-    @keyframes zoom { to { transform: scale(1); } }
-    #hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,11,12,.92) 0%, rgba(10,11,12,.7) 45%, rgba(10,11,12,.25) 100%), linear-gradient(0deg, rgba(10,11,12,.9) 0%, transparent 40%); }
-    .hero-inner { position: relative; z-index: 2; width: 100%; padding-bottom: 9rem; padding-top: 9rem; }
-    .eyebrow { display: inline-flex; align-items: center; gap: .9rem; font-family: 'Oswald', sans-serif; font-size: .78rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.6rem; }
-    .eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
-    h1 { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; font-size: clamp(3rem, 7vw, 6.4rem); line-height: .95; max-width: 900px; }
-    h1 span { color: var(--accent); }
-    .hero-sub { font-size: 1.1rem; color: #cfd3d6; max-width: 540px; margin: 1.6rem 0 2.6rem; font-weight: 300; }
-    .btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: .8rem; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: .9rem; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; padding: 1.05rem 2.1rem; transition: background .25s, color .25s, box-shadow .25s; }
-    .btn-a { background: var(--accent); color: #111; }
-    .btn-a:hover { box-shadow: 0 0 34px rgba(240,138,28,.45); }
-    .btn-b { border: 1px solid rgba(255,255,255,.5); color: #fff; }
-    .btn-b:hover { background: #fff; color: #111; }
-    .btn svg { width: 16px; height: 16px; }
-
-    .infobar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; }
-    .infobar .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
-    .info { padding: 1.5rem 1.6rem; background: rgba(22,25,28,.86); backdrop-filter: blur(10px); border-top: 2px solid var(--accent); }
-    .info + .info { border-left: 1px solid var(--sep); }
-    .info small { display: block; font-family: 'Oswald', sans-serif; font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--text-2); margin-bottom: .2rem; }
-    .info b, .info a { font-weight: 500; font-size: 1rem; text-decoration: none; }
-    .info a:hover { color: var(--accent); }
-
-    /* SECTION BASE */
-    section { padding: 7rem 0; }
-    .tag { display: inline-flex; align-items: center; gap: .8rem; font-family: 'Oswald', sans-serif; font-size: .74rem; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
-    .tag::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-    h2 { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; font-size: clamp(2.2rem, 4.2vw, 3.4rem); line-height: 1.02; margin-bottom: 1rem; }
-    .lead { color: var(--text-2); max-width: 560px; }
-    .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
-
-    /* SERVICES */
-    #sluzby { background: var(--bg-2); }
-    .srv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-    .card { background: var(--bg-3); position: relative; overflow: hidden; display: flex; flex-direction: column; }
-    .card .ph { aspect-ratio: 16/10; overflow: hidden; position: relative; }
-    .card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s; filter: saturate(.85); }
-    .card:hover .ph img { transform: scale(1.07); filter: saturate(1); }
-    .card .num { position: absolute; top: 1rem; left: 1rem; font-family: 'Oswald', sans-serif; font-size: .8rem; letter-spacing: .15em; background: var(--accent); color: #111; padding: .2rem .55rem; font-weight: 600; }
-    .card .body { padding: 1.6rem 1.6rem 1.8rem; border-bottom: 2px solid transparent; transition: border-color .3s; flex: 1; }
-    .card:hover .body { border-color: var(--accent); }
-    .card h3 { font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; font-size: 1.2rem; margin-bottom: .5rem; }
-    .card p { color: var(--text-2); font-size: .93rem; }
-
-    /* ABOUT */
-    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-ph { position: relative; }
-    .about-ph img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
-    .about-ph::before { content: ''; position: absolute; inset: 2rem -2rem -2rem 2rem; border: 2px solid var(--accent); z-index: -1; }
-    .about-badge { position: absolute; left: -1.5rem; bottom: 2.5rem; background: var(--accent); color: #111; padding: 1.2rem 1.5rem; font-family: 'Oswald', sans-serif; text-transform: uppercase; }
-    .about-badge b { display: block; font-size: 1.8rem; line-height: 1; }
-    .about-badge span { font-size: .8rem; letter-spacing: .12em; }
-    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--sep); margin: 2.2rem 0; }
-    .pillar { background: var(--bg); padding: 1.3rem 1.1rem; }
-    .pillar b { display: block; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: .3rem; }
-    .pillar p { font-size: .85rem; color: var(--text-2); }
-    .checks { list-style: none; display: grid; gap: .9rem; }
-    .checks li { display: grid; grid-template-columns: 26px 1fr; gap: .9rem; }
-    .checks li::before { content: ''; width: 22px; height: 22px; margin-top: 2px; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/13px no-repeat; }
-    .checks b { display: block; font-weight: 600; }
-    .checks span { color: var(--text-2); font-size: .92rem; }
-
-    /* CTA BAND */
-    .band { position: relative; padding: 6rem 0; text-align: center; background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=70') center/cover fixed; }
-    .band::before { content: ''; position: absolute; inset: 0; background: rgba(15,17,19,.82); }
-    .band .wrap { position: relative; }
-    .band h2 { margin-bottom: .6rem; }
-    .band p { color: #cfd3d6; margin-bottom: 2rem; }
-    .band .phone { display: block; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.6rem); color: var(--accent); text-decoration: none; margin-bottom: 2rem; }
-
-    /* GALLERY */
-    .gal { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 240px; gap: .8rem; }
-    .gal figure { overflow: hidden; position: relative; }
-    .gal figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gal figure:nth-child(4), .gal figure:nth-child(5), .gal figure:nth-child(6) { grid-column: span 2; }
-    .gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
-    .gal figure:hover img { transform: scale(1.06); }
-    .gal figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.2rem; background: linear-gradient(transparent, rgba(0,0,0,.8)); font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: .1em; font-size: .85rem; opacity: 0; transform: translateY(8px); transition: .35s; }
-    .gal figure:hover figcaption { opacity: 1; transform: none; }
-    .note { color: var(--text-3); font-size: .82rem; margin-top: 1rem; }
-
-    /* CONTACT */
-    #kontakt { background: var(--bg-2); }
-    .ct { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; }
-    .ct-list { display: grid; gap: 1rem; margin-top: 2rem; }
-    .ct-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.3rem; background: var(--bg-3); border-left: 2px solid var(--accent); }
-    .ct-ico { width: 42px; height: 42px; flex-shrink: 0; display: grid; place-items: center; background: var(--accent-dim); color: var(--accent); }
-    .ct-ico svg { width: 18px; height: 18px; }
-    .ct-item small { display: block; font-family: 'Oswald', sans-serif; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
-    .ct-item a { color: var(--accent); text-decoration: none; }
-    .map { min-height: 440px; background: var(--bg-3); }
-    .map iframe { width: 100%; height: 100%; min-height: 440px; border: 0; filter: grayscale(1) invert(.92) contrast(.9); }
-
-    footer { border-top: 1px solid var(--sep); padding: 2rem 0; font-size: .82rem; color: var(--text-3); }
-    footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    footer b { font-family: 'Oswald', sans-serif; color: var(--text); letter-spacing: .1em; }
-    footer b em { color: var(--accent); font-style: normal; }
-
-    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-
-    @media (max-width: 1024px) {
-      .srv { grid-template-columns: repeat(2, 1fr); }
-      .infobar .wrap { grid-template-columns: repeat(2, 1fr); }
-      .info:nth-child(3) { border-left: 0; }
-      .hero-inner { padding-bottom: 13rem; }
-    }
-    @media (max-width: 800px) {
-      .nav-links, .nav-cta { display: none; }
-      .burger { display: flex; }
-      .wrap { padding: 0 1.2rem; }
-      .about, .ct { grid-template-columns: 1fr; gap: 3rem; }
-      .about-ph::before { inset: 1rem -.8rem -.8rem 1rem; }
-      .about-badge { left: 0; }
-      .gal { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
-      .gal figure:nth-child(n+4) { grid-column: auto; }
-      .gal figure:nth-child(6) { grid-column: span 2; }
-      .gal figcaption { opacity: 1; transform: none; }
-      section { padding: 5rem 0; }
-      .band { background-attachment: scroll; }
-    }
-    @media (max-width: 560px) {
-      .srv, .pillars { grid-template-columns: 1fr; }
-      .infobar { position: relative; }
-      .infobar .wrap { grid-template-columns: 1fr 1fr; padding: 0; }
-      .info { padding: 1rem; }
-      #hero { flex-direction: column; justify-content: flex-end; }
-      .hero-inner { padding-bottom: 3rem; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .hero-img { animation: none; transform: none; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-  </style>
+  <!-- Strukturovaná data (schema.org) – pro vyhledávače i AI -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "GeneralContractor",
+        "@id": "https://bproud.cz/#firma",
+        "name": "B Proud Company s.r.o.",
+        "legalName": "B Proud Company s.r.o.",
+        "alternateName": "B Proud",
+        "description": "Stavební firma z Prahy – rekonstrukce bytů, izolace vzduchotechniky a fasád, protipožární prostupy, ploty a brány, bourací a výkopové práce, výměna chladících jednotek a doprava s hydraulickou rukou. Pro domácnosti i firmy.",
+        "url": "https://bproud.cz/",
+        "logo": "https://bproud.cz/img/icons/icon-192.png",
+        "image": "https://bproud.cz/img/og-image.jpg",
+        "telephone": "+420777052539",
+        "email": "bproud@email.cz",
+        "taxID": "06897797",
+        "vatID": "CZ06897797",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Dlouhá 730/35",
+          "addressLocality": "Praha 1 – Staré Město",
+          "postalCode": "110 00",
+          "addressRegion": "Hlavní město Praha",
+          "addressCountry": "CZ"
+        },
+        "hasMap": "https://maps.google.com/maps?q=Dlouh%C3%A1%20730%2F35%2C%20Praha",
+        "areaServed": { "@type": "City", "name": "Praha" },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "telephone": "+420777052539",
+          "email": "bproud@email.cz",
+          "availableLanguage": ["cs"]
+        },
+        "knowsAbout": ["Rekonstrukce bytů", "Izolace vzduchotechniky", "Izolace fasád", "Protipožární prostupy", "Bourací práce", "Výkopové práce", "Ploty a brány", "Výměna chladících jednotek", "Doprava s hydraulickou rukou"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Stavební služby",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rekonstrukce bytu", "description": "Proměna bytových jader a kuchyní." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ploty a brány", "description": "Stavba plotů včetně plotových polí." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Izolace vzduchotechniky", "description": "Izolace vzduchotechniky, topení a chlazení." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Izolace fasády", "description": "Zateplení fasád materiály Isocer, Caparol, Baumit a Weber." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Protipožární prostupy", "description": "Zajištění protipožárních prostupů dle požárních předpisů." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Výměna chladících jednotek", "description": "Výměna chladících jednotek a chladících věží." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bourací práce", "description": "Bezpečné odstranění stavebních prvků." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Výkopové práce", "description": "Ruční výkopy, bagrování a strojní výkopy." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Doprava s hydraulickou rukou", "description": "Doprava a manipulace s náklady do 12 tun." } }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bproud.cz/#web",
+        "url": "https://bproud.cz/",
+        "name": "B Proud Company s.r.o.",
+        "inLanguage": "cs-CZ",
+        "publisher": { "@id": "https://bproud.cz/#firma" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://bproud.cz/#faq",
+        "inLanguage": "cs-CZ",
+        "mainEntity": [
+          { "@type": "Question", "name": "Jaké stavební práce B Proud nabízí?", "acceptedAnswer": { "@type": "Answer", "text": "Rekonstrukce bytů, stavbu plotů a bran, izolace vzduchotechniky a fasád, protipožární prostupy, výměnu chladících jednotek, bourací a výkopové práce a dopravu s hydraulickou rukou." } },
+          { "@type": "Question", "name": "Kde firma působí?", "acceptedAnswer": { "@type": "Answer", "text": "Sídlíme v Praze 1 – Starém Městě (Dlouhá 730/35) a stavební práce realizujeme v Praze." } },
+          { "@type": "Question", "name": "Pracujete pro domácnosti i pro firmy?", "acceptedAnswer": { "@type": "Answer", "text": "Ano, zakázky realizujeme pro domácnosti i pro firmy." } },
+          { "@type": "Question", "name": "Jak získám cenovou nabídku?", "acceptedAnswer": { "@type": "Answer", "text": "Zavolejte na +420 777 052 539 nebo napište na bproud@email.cz. Rádi se podíváme na místo a připravíme nezávaznou nabídku." } },
+          { "@type": "Question", "name": "Jaké materiály používáte na izolaci fasád?", "acceptedAnswer": { "@type": "Answer", "text": "Pracujeme s materiály značek Isocer, Caparol, Baumit a Weber." } },
+          { "@type": "Question", "name": "Jak těžký náklad převeze doprava s hydraulickou rukou?", "acceptedAnswer": { "@type": "Answer", "text": "Dopravujeme a manipulujeme s náklady do 12 tun přímo na staveniště nebo jiný objekt." } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="wrap">
-    <a href="#hero" class="logo">B <em>PROUD</em></a>
-    <ul class="nav-links">
-      <li><a href="#sluzby">Služby</a></li>
-      <li><a href="#onas">O nás</a></li>
-      <li><a href="#galerie">Galerie</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-    <a href="tel:+420777052539" class="nav-cta">+420 777 052 539</a>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+
+<header>
+  <nav id="nav" aria-label="Hlavní navigace">
+    <div class="wrap">
+      <a href="#hero" class="logo" aria-label="B Proud – úvod">B <em>PROUD</em></a>
+      <ul class="nav-links">
+        <li><a href="#sluzby">Služby</a></li>
+        <li><a href="#onas">O nás</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#faq">Dotazy</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <a href="tel:+420777052539" class="nav-cta">+420 777 052 539</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="overlay"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div id="overlay">
+    <a href="#sluzby">Služby</a><a href="#onas">O nás</a><a href="#galerie">Galerie</a><a href="#faq">Dotazy</a><a href="#kontakt">Kontakt</a>
   </div>
-</nav>
-<div id="overlay">
-  <a href="#sluzby">Služby</a><a href="#onas">O nás</a><a href="#galerie">Galerie</a><a href="#kontakt">Kontakt</a>
-</div>
+</header>
+
+<main id="obsah">
 
 <section id="hero" style="padding:0">
-  <div class="hero-img" role="img" aria-label="Stavba – ilustrační fotografie"></div>
+  <img class="hero-img" src="img/hero.webp" srcset="img/hero-1000.webp 1000w, img/hero.webp 1920w" sizes="100vw" width="1920" height="1272" alt="Stavba – ilustrační fotografie" fetchpriority="high">
   <div class="wrap hero-inner">
-    <div class="eyebrow">Stavební práce Praha</div>
+    <p class="eyebrow">Stavební práce Praha</p>
     <h1>Stavíme s&nbsp;důrazem na <span>preciznost</span></h1>
     <p class="hero-sub">Rekonstrukce bytů, izolace vzduchotechniky a fasád, protipožární prostupy, zemní práce i doprava materiálu. Pro domácnosti i firmy.</p>
     <div class="btns">
       <a href="#kontakt" class="btn btn-a">Nezávazná poptávka
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       <a href="#sluzby" class="btn btn-b">Naše služby</a>
     </div>
   </div>
@@ -229,25 +173,35 @@
   </div>
 </section>
 
-<section id="sluzby">
+<section id="sluzby" aria-labelledby="sluzby-h">
   <div class="wrap">
     <div class="head">
-      <div><div class="tag">Co nabízíme</div><h2>Naše služby</h2></div>
+      <div><p class="tag">Co nabízíme</p><h2 id="sluzby-h">Naše služby</h2></div>
       <p class="lead">Pokrýváme celou škálu stavebních prací – od rekonstrukcí a izolací až po zemní práce a dopravu materiálu.</p>
     </div>
-    <div class="srv" id="srv"></div>
+    <div class="srv">
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/rekonstrukce-bytu.webp" width="800" height="479" alt="Zrekonstruovaná moderní kuchyně" loading="lazy" decoding="async"><span class="num" aria-hidden="true">01</span></div><div class="body"><h3>Rekonstrukce bytu</h3><p>Proměna bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/ploty-a-brany.webp" width="800" height="533" alt="Plot a vstupní brána u rodinného domu" loading="lazy" decoding="async"><span class="num" aria-hidden="true">02</span></div><div class="body"><h3>Ploty a brány</h3><p>Stavba plotů včetně plotových polí pro bezpečné a esteticky příjemné okolí vašeho domova nebo pozemku.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/izolace-vzduchotechniky.webp" width="800" height="534" alt="Potrubí vzduchotechniky" loading="lazy" decoding="async"><span class="num" aria-hidden="true">03</span></div><div class="body"><h3>Izolace vzduchotechniky</h3><p>Kompletní izolační služby pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/izolace-fasady.webp" width="800" height="533" alt="Fasáda domu po zateplení" loading="lazy" decoding="async"><span class="num" aria-hidden="true">04</span></div><div class="body"><h3>Izolace fasády</h3><p>Materiály Isocer, Caparol, Baumit a Weber – optimální tepelná ochrana a estetický vzhled.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/protipozarni-prostupy.webp" width="800" height="533" alt="Technické instalace v budově" loading="lazy" decoding="async"><span class="num" aria-hidden="true">05</span></div><div class="body"><h3>Protipožární prostupy</h3><p>Profesionální zajištění protipožárních prostupů a dodržení všech požárních předpisů.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/vymena-chladicich-jednotek.webp" width="800" height="533" alt="Budova s technologií chlazení" loading="lazy" decoding="async"><span class="num" aria-hidden="true">06</span></div><div class="body"><h3>Výměna chladících jednotek</h3><p>Profesionální výměna chladících jednotek a věží pro optimální fungování chladícího systému.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/bouraci-prace.webp" width="800" height="532" alt="Bourací práce na stavbě" loading="lazy" decoding="async"><span class="num" aria-hidden="true">07</span></div><div class="body"><h3>Bourací práce</h3><p>Precizní a bezpečné bourací práce – odstranění stavebních prvků dle vašich plánů.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/vykopove-prace.webp" width="800" height="532" alt="Bagr při výkopových pracích" loading="lazy" decoding="async"><span class="num" aria-hidden="true">08</span></div><div class="body"><h3>Výkopové práce</h3><p>Ruční výkopy pro detailní práce i bagrování a strojní výkopy pro větší projekty.</p></div></article>
+      <article class="card reveal"><div class="ph"><img src="img/sluzby/doprava-hydraulicka-ruka.webp" width="800" height="533" alt="Nákladní doprava stavebního materiálu" loading="lazy" decoding="async"><span class="num" aria-hidden="true">09</span></div><div class="body"><h3>Doprava s hydraulickou rukou</h3><p>Doprava a manipulace s náklady do 12 tun přímo na vaše staveniště nebo jiný objekt.</p></div></article>
+    </div>
   </div>
 </section>
 
-<section id="onas">
+<section id="onas" aria-labelledby="onas-h">
   <div class="wrap about">
     <div class="about-ph reveal">
-      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1000&q=75" alt="Řemeslník při práci – ilustrační fotografie" loading="lazy">
+      <img src="img/o-nas-remeslnik.webp" width="900" height="600" alt="Řemeslník při práci – ilustrační fotografie" loading="lazy" decoding="async">
       <div class="about-badge"><b>9 oborů</b><span>jeden partner</span></div>
     </div>
     <div>
-      <div class="tag">Naše filozofie</div>
-      <h2>Proč nás vybrat?</h2>
+      <p class="tag">Naše filozofie</p>
+      <h2 id="onas-h">Proč nás vybrat?</h2>
       <p class="lead">Každý projekt realizujeme s nasazením a péčí, jako by šlo o náš vlastní domov. Tato filozofie nás provází od vzniku společnosti.</p>
       <div class="pillars">
         <div class="pillar"><b>Kvalita</b><p>Nekompromisní kvalita – každý detail hraje roli.</p></div>
@@ -264,88 +218,75 @@
   </div>
 </section>
 
-<div class="band">
+<aside class="band" aria-labelledby="band-h">
   <div class="wrap">
-    <div class="tag" style="justify-content:center">Spojte se s námi</div>
-    <h2>Máte projekt? Probereme ho.</h2>
+    <p class="tag" style="justify-content:center">Spojte se s námi</p>
+    <h2 id="band-h">Máte projekt? Probereme ho.</h2>
     <p>Zavolejte nebo napište – rádi se podíváme na místo a připravíme nabídku.</p>
     <a class="phone" href="tel:+420777052539">+420 777 052 539</a>
     <a href="mailto:bproud@email.cz" class="btn btn-a">Napsat e-mail</a>
   </div>
-</div>
+</aside>
 
-<section id="galerie">
+<section id="galerie" aria-labelledby="galerie-h">
   <div class="wrap">
     <div class="head">
-      <div><div class="tag">Naše realizace</div><h2>Galerie</h2></div>
+      <div><p class="tag">Naše realizace</p><h2 id="galerie-h">Galerie</h2></div>
       <p class="lead">Ukázky typů prací, které realizujeme.</p>
     </div>
     <div class="gal">
-      <figure><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=75" alt="" loading="lazy"><figcaption>Rekonstrukce interiéru</figcaption></figure>
-      <figure><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=700&q=75" alt="" loading="lazy"><figcaption>Koupelna</figcaption></figure>
-      <figure><img src="https://images.unsplash.com/photo-1580901368919-7738efb0f87e?auto=format&fit=crop&w=700&q=75" alt="" loading="lazy"><figcaption>Výkopové práce</figcaption></figure>
-      <figure><img src="https://images.unsplash.com/photo-1574359411659-15573a27fd0c?auto=format&fit=crop&w=1200&q=75" alt="" loading="lazy"><figcaption>Fasáda</figcaption></figure>
-      <figure><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=75" alt="" loading="lazy"><figcaption>Ploty a brány</figcaption></figure>
-      <figure><img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=75" alt="" loading="lazy"><figcaption>Kuchyně</figcaption></figure>
+      <figure><img src="img/galerie/rekonstrukce-interieru.webp" width="1200" height="816" alt="Rekonstruovaný interiér bytu" loading="lazy" decoding="async"><figcaption>Rekonstrukce interiéru</figcaption></figure>
+      <figure><img src="img/galerie/koupelna.webp" width="700" height="1049" alt="Nová koupelna po rekonstrukci" loading="lazy" decoding="async"><figcaption>Koupelna</figcaption></figure>
+      <figure><img src="img/galerie/vykopove-prace.webp" width="700" height="466" alt="Stroj při výkopových pracích" loading="lazy" decoding="async"><figcaption>Výkopové práce</figcaption></figure>
+      <figure><img src="img/galerie/fasada.webp" width="1000" height="667" alt="Fasáda bytového domu" loading="lazy" decoding="async"><figcaption>Fasáda</figcaption></figure>
+      <figure><img src="img/galerie/ploty-a-brany.webp" width="1000" height="667" alt="Plot a brána u domu" loading="lazy" decoding="async"><figcaption>Ploty a brány</figcaption></figure>
+      <figure><img src="img/galerie/kuchyne.webp" width="1000" height="599" alt="Moderní kuchyně po rekonstrukci" loading="lazy" decoding="async"><figcaption>Kuchyně</figcaption></figure>
     </div>
     <p class="note">Ilustrační fotografie – budou nahrazeny fotografiemi vlastních realizací.</p>
   </div>
 </section>
 
-<section id="kontakt">
-  <div class="wrap ct">
-    <div>
-      <div class="tag">Kontakt</div>
-      <h2>Kde nás najdete</h2>
-      <div class="ct-list">
-        <div class="ct-item"><div class="ct-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l1.02-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.66 16.92z"/></svg></div><div><small>Telefon</small><a href="tel:+420777052539">+420 777 052 539</a></div></div>
-        <div class="ct-item"><div class="ct-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><small>E-mail</small><a href="mailto:bproud@email.cz">bproud@email.cz</a></div></div>
-        <div class="ct-item"><div class="ct-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><small>Adresa</small>Dlouhá 730/35, Praha 1 – Staré Město, 110 00</div></div>
-        <div class="ct-item"><div class="ct-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><small>Jednatel · IČO · DIČ</small>Ing. Haetchi Victor Nicolae · 06897797 · CZ06897797</div></div>
-      </div>
+<section id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="tag">Časté dotazy</p><h2 id="faq-h">Na co se nás ptáte</h2></div>
     </div>
-    <div class="map"><iframe title="Mapa – Dlouhá 730/35, Praha" loading="lazy" src="https://maps.google.com/maps?q=Dlouh%C3%A1%20730%2F35%2C%20Praha&z=15&output=embed"></iframe></div>
+    <div class="faq">
+      <details><summary>Jaké stavební práce B Proud nabízí?</summary><p>Rekonstrukce bytů, stavbu plotů a bran, izolace vzduchotechniky a fasád, protipožární prostupy, výměnu chladících jednotek, bourací a výkopové práce a dopravu s hydraulickou rukou.</p></details>
+      <details><summary>Kde firma působí?</summary><p>Sídlíme v Praze 1 – Starém Městě (Dlouhá 730/35) a stavební práce realizujeme v Praze.</p></details>
+      <details><summary>Pracujete pro domácnosti i pro firmy?</summary><p>Ano, zakázky realizujeme pro domácnosti i pro firmy.</p></details>
+      <details><summary>Jak získám cenovou nabídku?</summary><p>Zavolejte na <a href="tel:+420777052539">+420 777 052 539</a> nebo napište na <a href="mailto:bproud@email.cz">bproud@email.cz</a>. Rádi se podíváme na místo a připravíme nezávaznou nabídku.</p></details>
+      <details><summary>Jaké materiály používáte na izolaci fasád?</summary><p>Pracujeme s materiály značek Isocer, Caparol, Baumit a Weber.</p></details>
+      <details><summary>Jak těžký náklad převeze doprava s hydraulickou rukou?</summary><p>Dopravujeme a manipulujeme s náklady do 12 tun přímo na staveniště nebo jiný objekt.</p></details>
+    </div>
   </div>
 </section>
+
+<section id="kontakt" aria-labelledby="kontakt-h">
+  <div class="wrap ct">
+    <div>
+      <p class="tag">Kontakt</p>
+      <h2 id="kontakt-h">Kde nás najdete</h2>
+      <address class="ct-list">
+        <div class="ct-item"><div class="ct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.36 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6 6l1.02-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.66 16.92z"/></svg></div><div><small>Telefon</small><a href="tel:+420777052539">+420 777 052 539</a></div></div>
+        <div class="ct-item"><div class="ct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><small>E-mail</small><a href="mailto:bproud@email.cz">bproud@email.cz</a></div></div>
+        <div class="ct-item"><div class="ct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><small>Adresa</small>Dlouhá 730/35, Praha 1 – Staré Město, 110 00</div></div>
+        <div class="ct-item"><div class="ct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><small>Jednatel · IČO · DIČ</small>Ing. Haetchi Victor Nicolae · 06897797 · CZ06897797</div></div>
+      </address>
+    </div>
+    <div class="map"><iframe title="Mapa – Dlouhá 730/35, Praha" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Dlouh%C3%A1%20730%2F35%2C%20Praha&amp;z=15&amp;output=embed"></iframe></div>
+  </div>
+</section>
+
+</main>
 
 <footer>
   <div class="wrap">
     <b>B <em>PROUD</em> COMPANY s.r.o.</b>
     <span>IČO: 06897797 · DIČ: CZ06897797</span>
-    <span id="ftcopy"></span>
+    <span>© <span id="ftyear">2026</span> B Proud Company s.r.o.</span>
   </div>
 </footer>
 
-<script>
-  const S = (id, w) => 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=' + w + '&q=75';
-  const SERVICES = [
-    ['Rekonstrukce bytu', 'Proměna bytových jader a kuchyní – praktický, pohodlný a moderní domov podle vašich představ.', '1556911220-bff31c812dba'],
-    ['Ploty a brány', 'Stavba plotů včetně plotových polí pro bezpečné a esteticky příjemné okolí vašeho domova nebo pozemku.', '1600566753190-17f0baa2a6c3'],
-    ['Izolace vzduchotechniky', 'Kompletní izolační služby pro vzduchotechniku, topení a chlazení – efektivní řízení klimatu.', '1621905251189-08b45d6a269e'],
-    ['Izolace fasády', 'Materiály Isocer, Caparol, Baumit a Weber – optimální tepelná ochrana a estetický vzhled.', '1574359411659-15573a27fd0c'],
-    ['Protipožární prostupy', 'Profesionální zajištění protipožárních prostupů a dodržení všech požárních předpisů.', '1558618666-fcd25c85cd64'],
-    ['Výměna chladících jednotek', 'Profesionální výměna chladících jednotek a věží pro optimální fungování chladícího systému.', '1486406146926-c627a92ad1ab'],
-    ['Bourací práce', 'Precizní a bezpečné bourací práce – odstranění stavebních prvků dle vašich plánů.', '1517581177682-a085bb7ffb15'],
-    ['Výkopové práce', 'Ruční výkopy pro detailní práce i bagrování a strojní výkopy pro větší projekty.', '1580901368919-7738efb0f87e'],
-    ['Doprava s hydraulickou rukou', 'Doprava a manipulace s náklady do 12 tun přímo na vaše staveniště nebo jiný objekt.', '1429497419816-9ca5cfb4571a']
-  ];
-  document.getElementById('srv').innerHTML = SERVICES.map((s, i) =>
-    '<article class="card reveal"><div class="ph"><img src="' + S(s[2], 800) + '" alt="" loading="lazy"><span class="num">0' + (i + 1) + '</span></div><div class="body"><h3>' + s[0] + '</h3><p>' + s[1] + '</p></div></article>'
-  ).join('');
-
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('solid', scrollY > 60);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  const burger = document.getElementById('burger'), overlay = document.getElementById('overlay');
-  const setMenu = open => { burger.classList.toggle('x', open); overlay.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; };
-  burger.addEventListener('click', () => setMenu(!overlay.classList.contains('open')));
-  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  document.getElementById('ftcopy').textContent = '© ' + new Date().getFullYear() + ' B Proud Company s.r.o.';
-</script>
 </body>
 </html>

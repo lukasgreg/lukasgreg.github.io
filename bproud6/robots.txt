@@ -1,0 +1,35 @@
+# B Proud Company s.r.o.
+# Pozn.: robots.txt je platný jen v kořeni domény (https://domena.cz/robots.txt).
+
+User-agent: *
+Allow: /
+
+# AI vyhledávače a asistenti – výslovně povoleno
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://bproud.cz/sitemap.xml
