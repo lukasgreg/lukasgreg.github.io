@@ -1,0 +1,74 @@
+# Nasazení webu B Proud (složka bproud6/) na hosting bproud.cz přes FTP.
+# Přihlašovací údaje jsou v GitHub Secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD.
+#
+# Spouští se ručně (Actions → Deploy bproud.cz → Run workflow):
+#   list    – jen otestuje přihlášení a vypíše složky na serveru (nic nemění)
+#   dry-run – ukáže, co by se nahrálo/smazalo (nic nemění)
+#   deploy  – skutečně nahraje změněné soubory
+name: Deploy bproud.cz
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "list / dry-run / deploy"
+        type: choice
+        options: [list, dry-run, deploy]
+        default: list
+      server_dir:
+        description: "Cílová složka na serveru (web root), musí končit /"
+        type: string
+        default: "/www/"
+      protocol:
+        description: "ftps (šifrované) nebo ftp"
+        type: choice
+        options: [ftps, ftp]
+        default: ftps
+
+concurrency: deploy-bproud
+
+jobs:
+  list:
+    if: inputs.mode == 'list'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test přihlášení a výpis složek
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          HOST="${FTP_SERVER#ftp://}"; HOST="${HOST#ftps://}"; HOST="${HOST%/}"
+          printf 'machine %s login %s password %s\n' "${HOST%%:*}" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
+          chmod 600 ~/.netrc
+          list() { curl -sS --max-time 30 --netrc "$@" --list-only "ftp://$HOST$DIR"; }
+          DIR=/
+          if list --ssl-reqd >/tmp/root.txt 2>/tmp/err.txt; then
+            echo "✅ FTPS (šifrované) přihlášení funguje"; OPT=--ssl-reqd
+          elif list >/tmp/root.txt 2>/tmp/err.txt; then
+            echo "⚠️ Funguje jen nešifrované FTP"; OPT=
+          else
+            echo "❌ Přihlášení selhalo:"; cat /tmp/err.txt; exit 1
+          fi
+          echo "--- Obsah kořene / ---"; cat /tmp/root.txt
+          for DIR in /www/ /public_html/ /web/ /htdocs/ /domains/; do
+            if list $OPT >/tmp/d.txt 2>/dev/null; then echo "--- $DIR ---"; head -50 /tmp/d.txt; fi
+          done
+          rm -f ~/.netrc
+
+  deploy:
+    if: inputs.mode != 'list'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ${{ inputs.mode == 'deploy' && 'Nahrát na server' || 'Zkouška nanečisto (dry-run)' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ inputs.protocol }}
+          local-dir: ./bproud6/
+          server-dir: ${{ inputs.server_dir }}
+          dry-run: ${{ inputs.mode != 'deploy' }}
+          log-level: verbose
