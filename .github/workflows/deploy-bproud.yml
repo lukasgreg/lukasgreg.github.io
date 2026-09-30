@@ -39,6 +39,12 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           HOST="${FTP_SERVER#ftp://}"; HOST="${HOST#ftps://}"; HOST="${HOST%/}"
+          echo "--- Diagnostika sítě ---"
+          echo "Délka hodnoty FTP_SERVER: ${#FTP_SERVER}, obsahuje mezeru: $([[ "$FTP_SERVER" == *" "* ]] && echo ano || echo ne), obsahuje port: $([[ "$HOST" == *:* ]] && echo ano || echo ne)"
+          IP=$(getent hosts "${HOST%%:*}" | awk '{print $1}' | head -1)
+          echo "DNS: ${IP:-NEPŘELOŽENO}"
+          echo "IP runneru GitHubu: $(curl -s --max-time 10 https://api.ipify.org)"
+          for P in 21 22 990; do timeout 8 bash -c "</dev/tcp/${HOST%%:*}/$P" 2>/dev/null && echo "port $P: otevřený" || echo "port $P: zavřený / blokovaný"; done
           printf 'machine %s login %s password %s\n' "${HOST%%:*}" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
           chmod 600 ~/.netrc
           list() { curl -sS --max-time 30 --netrc "$@" --list-only "ftp://$HOST$DIR"; }
