@@ -65,5 +65,13 @@
     document.getElementById('map').replaceChildren(f);
   });
 
+  // E-mail: v HTML je adresa pozpátku v data-atributech (ochrana před sběrem robotů), sestaví se až zde
+  const rev = s => s.split('').reverse().join('');
+  document.querySelectorAll('.js-mail').forEach(a => {
+    const addr = rev(a.dataset.u) + '@' + rev(a.dataset.d);
+    a.href = 'mailto:' + addr;
+    if (!a.hasAttribute('data-keep-text')) a.textContent = addr;
+  });
+
   document.getElementById('ftyear').textContent = new Date().getFullYear();
 })();
