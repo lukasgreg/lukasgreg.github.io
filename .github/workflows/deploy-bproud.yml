@@ -1,10 +1,10 @@
-# Nasazení webu B Proud (složka bproud6/) na hosting bproud.cz přes FTP.
+# Nasazení webu B Proud (složka bproud6/) na hosting bproud.cz přes SFTP (port 222, šifrované).
 # Přihlašovací údaje jsou v GitHub Secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD.
 #
 # Spouští se ručně (Actions → Deploy bproud.cz → Run workflow):
-#   list    – jen otestuje přihlášení a vypíše složky na serveru (nic nemění)
+#   list    – otestuje přihlášení a vypíše složky na serveru (nic nemění)
 #   dry-run – ukáže, co by se nahrálo/smazalo (nic nemění)
-#   deploy  – skutečně nahraje změněné soubory
+#   deploy  – nahraje změněné soubory; se "delete" smaže na serveru soubory, které v bproud6/ nejsou
 name: Deploy bproud.cz
 
 on:
@@ -16,65 +16,48 @@ on:
         options: [list, dry-run, deploy]
         default: list
       server_dir:
-        description: "Cílová složka na serveru (web root), musí končit /"
+        description: "Cílová složka na serveru (web root)"
         type: string
-        default: "/www/"
-      protocol:
-        description: "ftps (šifrované) nebo ftp"
-        type: choice
-        options: [ftps, ftp]
-        default: ftps
+        default: "/bproud.cz/web"
+      delete:
+        description: "Smazat na serveru soubory, které nejsou v bproud6/"
+        type: boolean
+        default: false
 
 concurrency: deploy-bproud
 
 jobs:
-  list:
-    if: inputs.mode == 'list'
+  sftp:
     runs-on: ubuntu-latest
     steps:
-      - name: Test přihlášení a výpis složek
+      - uses: actions/checkout@v4
+        if: inputs.mode != 'list'
+
+      - name: Instalace lftp
+        run: sudo apt-get -qq update && sudo apt-get -qq install -y lftp >/dev/null
+
+      - name: ${{ inputs.mode }}
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          MODE: ${{ inputs.mode }}
+          DIR: ${{ inputs.server_dir }}
+          DELETE: ${{ inputs.delete }}
         run: |
-          HOST="${FTP_SERVER#ftp://}"; HOST="${HOST#ftps://}"; HOST="${HOST%/}"
-          echo "--- Diagnostika sítě ---"
-          echo "Délka hodnoty FTP_SERVER: ${#FTP_SERVER}, obsahuje mezeru: $([[ "$FTP_SERVER" == *" "* ]] && echo ano || echo ne), obsahuje port: $([[ "$HOST" == *:* ]] && echo ano || echo ne)"
-          IP=$(getent hosts "${HOST%%:*}" | awk '{print $1}' | head -1)
-          echo "DNS: ${IP:-NEPŘELOŽENO}"
-          echo "IP runneru GitHubu: $(curl -s --max-time 10 https://api.ipify.org)"
-          for P in 21 22 222 990; do timeout 8 bash -c "</dev/tcp/${HOST%%:*}/$P" 2>/dev/null && echo "port $P: otevřený, banner: $(timeout 5 bash -c "exec 3<>/dev/tcp/${HOST%%:*}/$P; head -c 60 <&3" 2>/dev/null | tr -d '\r\n')" || echo "port $P: zavřený / blokovaný"; done
-          printf 'machine %s login %s password %s\n' "${HOST%%:*}" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
-          chmod 600 ~/.netrc
-          list() { curl -sS --max-time 30 --netrc "$@" --list-only "ftp://$HOST$DIR"; }
-          DIR=/
-          if list --ssl-reqd >/tmp/root.txt 2>/tmp/err.txt; then
-            echo "✅ FTPS (šifrované) přihlášení funguje"; OPT=--ssl-reqd
-          elif list >/tmp/root.txt 2>/tmp/err.txt; then
-            echo "⚠️ Funguje jen nešifrované FTP"; OPT=
-          else
-            echo "❌ Přihlášení selhalo:"; cat /tmp/err.txt; exit 1
-          fi
-          echo "--- Obsah kořene / ---"; cat /tmp/root.txt
-          for DIR in /bproud.cz/ /bproud.cz/public_html/ /bproud.cz/www/ /_sub/ /www/ /public_html/ /web/ /htdocs/ /domains/; do
-            if list $OPT >/tmp/d.txt 2>/dev/null; then echo "--- $DIR ---"; head -50 /tmp/d.txt; fi
-          done
-          rm -f ~/.netrc
+          HOST="${FTP_SERVER#*://}"; HOST="${HOST%%/*}"; HOST="${HOST%%:*}"
+          export LFTP_PASSWORD="$FTP_PASSWORD"
+          SETTINGS="set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; set cmd:fail-exit yes"
+          run() { lftp --env-password -u "$FTP_USERNAME" -p 222 "sftp://$HOST" -e "$SETTINGS; $1; bye"; }
 
-  deploy:
-    if: inputs.mode != 'list'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: ${{ inputs.mode == 'deploy' && 'Nahrát na server' || 'Zkouška nanečisto (dry-run)' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ inputs.protocol }}
-          local-dir: ./bproud6/
-          server-dir: ${{ inputs.server_dir }}
-          dry-run: ${{ inputs.mode != 'deploy' }}
-          log-level: verbose
+          if [ "$MODE" = list ]; then
+            echo "--- / ---";               run "cls -la /"
+            echo "--- /bproud.cz/ ---";      run "cls -la /bproud.cz/" || true
+            echo "--- $DIR ---";             run "cls -la $DIR" || true
+            exit 0
+          fi
+
+          FLAGS="--reverse --verbose --parallel=4 --exclude-glob .git* --exclude-glob _*"
+          [ "$DELETE" = true ] && FLAGS="$FLAGS --delete"
+          [ "$MODE" = dry-run ] && FLAGS="$FLAGS --dry-run"
+          run "mirror $FLAGS ./bproud6/ $DIR"
