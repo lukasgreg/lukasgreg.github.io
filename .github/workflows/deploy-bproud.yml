@@ -30,6 +30,7 @@ concurrency: deploy-bproud
 jobs:
   sftp:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         if: inputs.mode != 'list'
@@ -53,7 +54,7 @@ jobs:
           # Hosting občas odmítne spojení – celý příkaz zkusíme až 5× (mirror je idempotentní)
           run() {
             for i in 1 2 3 4 5; do
-              lftp --env-password -u "$FTP_USERNAME" -p 222 "sftp://$HOST" -e "$SETTINGS; $1; bye" && return 0
+              timeout 180 lftp --env-password -u "$FTP_USERNAME" -p 222 "sftp://$HOST" -e "$SETTINGS; $1; bye" && return 0
               echo "⚠️ Pokus $i selhal, zkusím znovu za $((i * 10)) s"; sleep $((i * 10))
             done
             return 1
