@@ -5,15 +5,16 @@
 #   list    – otestuje přihlášení a vypíše složky na serveru (nic nemění)
 #   dry-run – ukáže, co by se nahrálo/smazalo (nic nemění)
 #   deploy  – nahraje změněné soubory; se "delete" smaže na serveru soubory, které v bproud6/ nejsou
+#   archive – přesune VŠE ze server_dir do /backup/web-<datum-čas>/ na serveru (vratné vyčištění)
 name: Deploy bproud.cz
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "list / dry-run / deploy"
+        description: "list / dry-run / deploy / archive"
         type: choice
-        options: [list, dry-run, deploy]
+        options: [list, dry-run, deploy, archive]
         default: list
       server_dir:
         description: "Cílová složka na serveru (web root)"
@@ -54,6 +55,17 @@ jobs:
             echo "--- / ---";               run "cls -la /"
             echo "--- /bproud.cz/ ---";      run "cls -la /bproud.cz/" || true
             echo "--- $DIR ---";             run "cls -la $DIR" || true
+            exit 0
+          fi
+
+          if [ "$MODE" = archive ]; then
+            DEST="/backup/web-$(date -u +%Y%m%d-%H%M%S)"
+            echo "Přesouvám obsah $DIR do $DEST"
+            run "mkdir -p $DEST"
+            run "cd $DIR; glob -a mv * $DEST/" || echo "(žádné viditelné soubory)"
+            run "cd $DIR; glob -a mv .[!.]* $DEST/" || echo "(žádné skryté soubory)"
+            echo "--- $DEST ---"; run "cls -la $DEST"
+            echo "--- $DIR (má být prázdný) ---"; run "cls -la $DIR"
             exit 0
           fi
 
