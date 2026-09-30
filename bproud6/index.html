@@ -39,14 +39,15 @@
   <!-- Soubor pro AI asistenty (llms.txt) -->
   <link rel="alternate" type="text/markdown" href="llms.txt" title="LLM summary">
 
-  <!-- Výkon: hero obrázek (LCP) a písma -->
+  <!-- Výkon: hero obrázek (LCP) a písma (vlastní hosting, žádné cizí domény) -->
   <link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-1000.webp 1000w, img/hero.webp 1920w" imagesizes="100vw" fetchpriority="high">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/theme.js"></script>
-  <script src="js/main.js" defer></script>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/oswald-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/oswald-latin-ext.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin-ext.woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=20260930b">
+  <script src="js/theme.js?v=20260930b"></script>
+  <script src="js/main.js?v=20260930b" defer></script>
 
   <!-- Strukturovaná data (schema.org) – pro vyhledávače i AI -->
   <script type="application/ld+json">
@@ -281,7 +282,14 @@
         <div class="ct-item"><div class="ct-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><small>Jednatel · IČO · DIČ</small>Ing. Haetchi Victor Nicolae · 06897797 · CZ06897797</div></div>
       </address>
     </div>
-    <div class="map"><iframe title="Mapa – Dlouhá 730/35, Praha" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Dlouh%C3%A1%20730%2F35%2C%20Praha&amp;z=15&amp;output=embed"></iframe></div>
+    <div class="map" id="map">
+      <div class="map-ph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p>Dlouhá 730/35, Praha 1 – Staré Město</p>
+        <button type="button" class="btn btn-a" id="map-load">Zobrazit mapu</button>
+        <a class="map-ext" href="https://maps.google.com/maps?q=Dlouh%C3%A1%20730%2F35%2C%20Praha" target="_blank" rel="noopener">Otevřít v Google Maps ↗</a>
+      </div>
+    </div>
   </div>
 </section>
 

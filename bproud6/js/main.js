@@ -46,5 +46,24 @@
     reveals.forEach(el => el.classList.add('in'));
   }
 
+  // CTA pás: fotku na pozadí načíst až při přiblížení
+  const band = document.querySelector('.band');
+  if (band) {
+    if ('IntersectionObserver' in window) {
+      const bio = new IntersectionObserver(es => { if (es[0].isIntersecting) { band.classList.add('bg-on'); bio.disconnect(); } }, { rootMargin: '600px 0px' });
+      bio.observe(band);
+    } else band.classList.add('bg-on');
+  }
+
+  // Mapa: Google Maps (těžký iframe + cookies) se načte až na kliknutí
+  const mapBtn = document.getElementById('map-load');
+  if (mapBtn) mapBtn.addEventListener('click', () => {
+    const f = document.createElement('iframe');
+    f.title = 'Mapa – Dlouhá 730/35, Praha';
+    f.referrerPolicy = 'no-referrer-when-downgrade';
+    f.src = 'https://maps.google.com/maps?q=Dlouh%C3%A1%20730%2F35%2C%20Praha&z=15&output=embed';
+    document.getElementById('map').replaceChildren(f);
+  });
+
   document.getElementById('ftyear').textContent = new Date().getFullYear();
 })();
