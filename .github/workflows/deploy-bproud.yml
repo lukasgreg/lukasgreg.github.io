@@ -44,7 +44,7 @@ jobs:
           IP=$(getent hosts "${HOST%%:*}" | awk '{print $1}' | head -1)
           echo "DNS: ${IP:-NEPŘELOŽENO}"
           echo "IP runneru GitHubu: $(curl -s --max-time 10 https://api.ipify.org)"
-          for P in 21 22 990; do timeout 8 bash -c "</dev/tcp/${HOST%%:*}/$P" 2>/dev/null && echo "port $P: otevřený" || echo "port $P: zavřený / blokovaný"; done
+          for P in 21 22 222 990; do timeout 8 bash -c "</dev/tcp/${HOST%%:*}/$P" 2>/dev/null && echo "port $P: otevřený, banner: $(timeout 5 bash -c "exec 3<>/dev/tcp/${HOST%%:*}/$P; head -c 60 <&3" 2>/dev/null | tr -d '\r\n')" || echo "port $P: zavřený / blokovaný"; done
           printf 'machine %s login %s password %s\n' "${HOST%%:*}" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
           chmod 600 ~/.netrc
           list() { curl -sS --max-time 30 --netrc "$@" --list-only "ftp://$HOST$DIR"; }
@@ -57,7 +57,7 @@ jobs:
             echo "❌ Přihlášení selhalo:"; cat /tmp/err.txt; exit 1
           fi
           echo "--- Obsah kořene / ---"; cat /tmp/root.txt
-          for DIR in /www/ /public_html/ /web/ /htdocs/ /domains/; do
+          for DIR in /bproud.cz/ /bproud.cz/public_html/ /bproud.cz/www/ /_sub/ /www/ /public_html/ /web/ /htdocs/ /domains/; do
             if list $OPT >/tmp/d.txt 2>/dev/null; then echo "--- $DIR ---"; head -50 /tmp/d.txt; fi
           done
           rm -f ~/.netrc
