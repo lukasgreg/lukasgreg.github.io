@@ -48,8 +48,16 @@ jobs:
         run: |
           HOST="${FTP_SERVER#*://}"; HOST="${HOST%%/*}"; HOST="${HOST%%:*}"
           export LFTP_PASSWORD="$FTP_PASSWORD"
-          SETTINGS="set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 30; set cmd:fail-exit yes"
-          run() { lftp --env-password -u "$FTP_USERNAME" -p 222 "sftp://$HOST" -e "$SETTINGS; $1; bye"; }
+          SETTINGS="set sftp:auto-confirm yes; set net:max-retries 3; set net:reconnect-interval-base 5; set net:timeout 20; set cmd:fail-exit yes"
+          echo "IP runneru: $(curl -s --max-time 10 https://api.ipify.org)"
+          # Hosting občas odmítne spojení – celý příkaz zkusíme až 5× (mirror je idempotentní)
+          run() {
+            for i in 1 2 3 4 5; do
+              lftp --env-password -u "$FTP_USERNAME" -p 222 "sftp://$HOST" -e "$SETTINGS; $1; bye" && return 0
+              echo "⚠️ Pokus $i selhal, zkusím znovu za $((i * 10)) s"; sleep $((i * 10))
+            done
+            return 1
+          }
 
           if [ "$MODE" = list ]; then
             echo "--- / ---";               run "cls -la /"
