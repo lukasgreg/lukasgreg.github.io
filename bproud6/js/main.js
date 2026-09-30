@@ -11,12 +11,30 @@
   const setMenu = open => {
     burger.classList.toggle('x', open);
     burger.setAttribute('aria-expanded', open);
+    nav.classList.toggle('menu-open', open);
     overlay.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   };
   burger.addEventListener('click', () => setMenu(!overlay.classList.contains('open')));
   overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) setMenu(false); });
+
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const applyTheme = theme => {
+    root.dataset.theme = theme;
+    const light = theme === 'light';
+    toggle.setAttribute('aria-label', light ? 'Přepnout na tmavý režim' : 'Přepnout na světlý režim');
+    toggle.title = toggle.getAttribute('aria-label');
+    if (themeMeta) themeMeta.content = light ? '#f6f5f2' : '#0f1113';
+  };
+  applyTheme(root.dataset.theme === 'light' ? 'light' : 'dark');
+  toggle.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) { /* bez uložení */ }
+  });
 
   const reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
