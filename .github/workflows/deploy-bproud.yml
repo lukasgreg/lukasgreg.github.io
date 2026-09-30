@@ -62,8 +62,8 @@ jobs:
             DEST="/backup/web-$(date -u +%Y%m%d-%H%M%S)"
             echo "Přesouvám obsah $DIR do $DEST"
             run "mkdir -p $DEST"
-            run "cd $DIR; glob -a mv * $DEST/" || echo "(žádné viditelné soubory)"
-            run "cd $DIR; glob -a mv .[!.]* $DEST/" || echo "(žádné skryté soubory)"
+            run "cd $DIR; mmv -O $DEST *" || echo "(žádné viditelné soubory)"
+            run "cd $DIR; mmv -O $DEST .htaccess" || echo "(žádný .htaccess)"
             echo "--- $DEST ---"; run "cls -la $DEST"
             echo "--- $DIR (má být prázdný) ---"; run "cls -la $DIR"
             exit 0
